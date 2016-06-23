@@ -11,6 +11,7 @@ module Lita
 
       include ::PulpHelper::Misc
       include ::PulpHelper::Repo
+      include ::PulpHelper::Unit
 
       route(
        /^pulp\srpm\srepos$/,
@@ -31,6 +32,16 @@ module Lita
 
       )
 
+      route(
+       /^pulp\srpm\ssearch\s(.+)$/,
+       :rpm_search,
+       command: true,
+       help: {
+         t('help.repos.syntax') => t('help.repos.desc')
+       }
+
+      )
+
       def rpm_repos(response)
           result=list_repo(REPO_TYPE_RPM)
           response.reply result
@@ -41,6 +52,11 @@ module Lita
           response.reply result
       end
 
+      def rpm_search(response)
+        name = response.matches[0][0]
+        puts "searching for rpm #{name}"
+        search_rpm(name)
+      end
       Lita.register_handler(self)
     end
   end

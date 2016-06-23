@@ -6,6 +6,7 @@ Lita.load_locales Dir[File.expand_path(
 
 require 'pulphelper/misc'
 require 'pulphelper/repo'
+require 'pulphelper/unit'
 require "lita/handlers/pulp"
 
 Lita::Handlers::Pulp.template_root File.expand_path(
