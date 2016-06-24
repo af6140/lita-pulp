@@ -1,3 +1,4 @@
+require 'lita-keyword-arguments'
 require "lita-pulp"
 require "lita/rspec"
 
@@ -8,6 +9,7 @@ Lita.version_3_compatibility_mode = false
 RSpec.configure do |config|
   config.before do
     registry.register_handler(Lita::Handlers::Pulp)
+    registry.register_hook(:trigger_route, Lita::Extensions::KeywordArguments)
   end
 end
 

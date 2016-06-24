@@ -64,6 +64,17 @@ module PulpHelper
         if unassociate_response.code !=202
           raise "Exception: cannot unassociate unit, response code: #{unassociate_response.code}"
         end
+        if auto_publish
+          publish_response=client.extensions.repository.publish_all(forge_id)
+          presponse=JSON.parse(publish_response.to_json)
+          if presponse.nil? || presponse[0]["spawned_tasks"].length<1
+            raise "Exception: repo publish requeste failed, response : #{publish_response}"
+          end
+
+          # if publish_response.code !=202 && !"#{publish_response.code}".start_with?("20")
+          #    raise "Exception: repo publish requeste failed, response code : #{publish_response.code}"
+          # end
+        end
       rescue StandardError => e
         raise "Error delete module newer than #{author}-#{name}-#{version} from repo #{forge_id}: #{e.message}"
       end
@@ -84,7 +95,7 @@ module PulpHelper
         copy_unit_ids= {
             :ids => [unit_id]
         }
-        copy_response=client.extensions.unit.copy(from_repo, to_repo, copy_unit_ids)
+        copy_response=client.extensions.rpm.copy(from_repo, to_repo, copy_unit_ids)
         if copy_response.code !=200 && copy_response.code !=202
           raise "Exception: unit copy failed with code #{copy_response.code}"
         end
@@ -108,9 +119,14 @@ module PulpHelper
         end
         if auto_publish
           publish_response=client.extensions.repository.publish_all(forge_id)
-          if publish_response.code !=202 && !"#{publish_response.code}".start_with?("20")
-            raise "Exception: repo publish requeste failed, response code : #{publish_response.code}"
+
+          presponse=JSON.parse(publish_response.to_json)
+          if presponse.nil? || presponse[0]["spawned_tasks"].length<1
+            raise "Exception: repo publish requeste failed, response : #{publish_response}"
           end
+          # if publish_response.code !=202 && !"#{publish_response.code}".start_with?("20")
+          #    raise "Exception: repo publish requeste failed, response code : #{publish_response.code}"
+          # end
         end
       rescue StandardError => e
         raise "Exception: Error delete module newer than #{author}-#{name}-#{version} from repo #{forge_id}: #{e.message}"
@@ -119,13 +135,13 @@ module PulpHelper
 
     def copy_puppet_between_repo!(from_repo, to_repo, author,name, version, delete_new=false, auto_publish=true)
       search_params = get_puppet_search_params(author, name, version)
-
       begin
+        puts "search_params :#{search_params}"
         unit_search_response=client.resources.unit.search("puppet_module", search_params[:criteria], search_params[:optional])
-
         if unit_search_response.code !=200
           raise "Exception: unit search faild with code #{unit_search_response.code}"
         end
+        puts "search_response : #{unit_search_response.to_json}"
         found_units=JSON.parse(unit_search_response.to_json)
         unit_id=found_units.first['_id']
 
@@ -135,12 +151,12 @@ module PulpHelper
         copy_unit_ids= {
             :ids => [unit_id]
         }
-        copy_response=unit_res.copy(from_repo, to_repo, copy_unit_ids)
+        copy_response=client.extensions.puppet_module.copy(from_repo, to_repo, copy_unit_ids)
         if copy_response.code !=200 && copy_response.code !=202
           raise "Exception: unit copy failed with code #{copy_response.code}"
         end
         if(delete_new)
-          delete_puppet_newer!(to_repo,author, name, version,auto_publish )
+          delete_puppet_newer!(to_repo,author, name, version, auto_publish )
         end
       rescue StandardError => e
         raise "Error copy module between repo: #{e.to_s}"

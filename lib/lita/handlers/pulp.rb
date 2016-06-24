@@ -1,3 +1,5 @@
+require 'lita-keyword-arguments'
+
 module Lita
   module Handlers
     class Pulp < Handler
@@ -59,15 +61,35 @@ module Lita
       )
 
       route(
-        /^pulp\s+rpm\s+copy\s+from=(\S+)\s+to=(\S+)\s+name=(\S+)\s+version=(\S+)\s+release=(\S+)/i,
+        /^pulp\s+rpm\s+copy/i,
         :copy_rpm,
         command: true,
         kwargs: {
+          from: {
+            short: "s",
+          },
+          to: {
+            short: "t"
+          },
+          name: {
+            short: "n"
+          },
+          version: {
+            short: "v"
+          },
+          release: {
+            short: "r"
+          },
+          arch: {
+            short: "a"
+          },
           delete_newer: {
-            short: "d"
+            short: "d",
+            boolean: true
           },
           publish: {
-            short: "p"
+            short: "p",
+            boolean: true
           }
         },
         help: {
@@ -75,20 +97,38 @@ module Lita
         }
       )
 
+
       route(
-        /^pulp\s+puppet\s+copy\s+from=(\S+)\s+to=(\S+)\s+author=(\S+)\s+name=(\S+)\s+version=(\S+)/i,
-        :copy_rpm,
+        /^pulp\s+puppet\s+copy/i,
+        :copy_puppet,
         command: true,
         kwargs: {
+          from: {
+            short: "s",
+          },
+          to: {
+            short: "t"
+          },
+          author: {
+            short: "a"
+          },
+          name: {
+            short: "n"
+          },
+          version: {
+            short: "v"
+          },
           delete_newer: {
-            short: "d"
+            short: "d",
+            boolean: true
           },
           publish: {
-            short: "p"
+            short: "p",
+            boolean: true
           }
         },
         help: {
-          t("help.copy_rpm_key") => t("help.copy_rpm_value")
+          t("help.copy_puppet_key") => t("help.copy_puppet_value")
         }
       )
 
@@ -157,16 +197,23 @@ module Lita
         end
       end
 
-      def rpm_copy(response)
-         from=response.matchs[0][0]
-         to=response.matchs[0][1]
-         name=response.matchs[0][2]
-         version=response.matchs[0][3]
-         release=response.matchs[0][4]
-         arch = response.matchs[0][5]
+      def copy_rpm(response)
+         #puts "response.extensions=#{response.extensions}"
          args = response.extensions[:kwargs]
+         from = args[:from]
+         to = args[:to]
+         release = args[:release]
+         name = args[:name]
+         version = args[:version]
+         arch = args[:arch]
+
+         if from.nil? || to.nil? || relase.nil? ||name.nil? || version.nil? || arch.nil?
+           response.reply "Missing required paramenter"
+         end
+
          delete_newer=args[:delete_newer]||false
          publish=args[:publish]||false
+
          begin
            copy_rpm_between_repo!(from, to, name, version, release, arch, delete_newer, publish)
            response.reply "Command executed successfully"
@@ -175,22 +222,28 @@ module Lita
          end
       end
 
-      def puppet_copy(response)
-        from=response.matchs[0][0]
-        to=response.matchs[0][1]
-        author=response.matchs[0][2]
-        name=response.matchs[0][3]
-        version=response.matchs[0][4]
+      def copy_puppet(response)
         args = response.extensions[:kwargs]
+        from = args[:from]
+        to = args[:to]
+        author = args[:author]
+        name = args[:name]
+        version = args[:version]
+        if from.nil? || to.nil? || author.nil? ||name.nil? || version.nil?
+          response.reply "Missing required paramenter"
+        end
         delete_newer=args[:delete_newer]||false
         publish=args[:publish]||false
+        puts "delete_newer=#{delete_newer} publish=#{publish}"
+
         begin
-          copy_rpm_between_repo!(from, to, author, name, version, delete_newer, publish)
+          copy_puppet_between_repo!(from, to, author, name, version, delete_newer, publish)
           response.reply "Command executed successfully"
         rescue Excpetion => e
           response.reply e.message
         end
       end
+
 
       Lita.register_handler(self)
     end
