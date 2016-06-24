@@ -41,8 +41,8 @@ module Lita
        }
       )
 
-      oute(
-       /^pulp\spuppet\ssearch\s([a_zA-Z0-9]+\/)?\S+)(?>\sin\s)?(\S+)?$/,
+      route(
+       /^pulp\spuppet\ssearch\s(?>[a_zA-Z0-9]+\/)?(\S+)(?>\sin\s)?(\S+)?$/,
        :puppet_search,
        command: true,
        help: {
@@ -62,16 +62,25 @@ module Lita
 
       def rpm_search(response)
         name = response.matches[0][0]
-        repo = response.matches[1][0]
+        repo = response.matches[0][1]
         puts "searching for rpm #{name} in repo #{repo}"
         search_rpm(name, repo)
       end
 
       def puppet_search(response)
-        name = response.matches[0][0]
-        repo = response.matches[1][0]
-        puts "searching for puppet module #{name} in repo #{repo}"
-        search_puppetname, repo)
+        full_name = response.matches[0][0]
+        repo = response.matches[0][1]
+        name_spec = full_name.split('/')
+        puts "name_spec:#{name_spec}"
+        if name_spec.length >1
+          author = name_spec[0]
+          name = name_spec[1]
+        else
+          name = full_name
+          author = nil
+        end
+        puts "searching for puppet module #{name} with author: #{author} in repo #{repo}, full_name = #{full_name}"
+        search_puppet(author, name, repo)
       end
 
       def rpm_copy(from, to, name, version, release, delete_newer=false)

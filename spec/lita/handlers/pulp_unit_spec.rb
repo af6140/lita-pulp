@@ -12,11 +12,38 @@ describe Lita::Handlers::Pulp, lita_handler: true do
 
   it do
     is_expected.to route_command('pulp rpm search cosmos').to(:rpm_search)
+    is_expected.to route_command('pulp rpm search cosmos in dev').to(:rpm_search)
+    is_expected.to route_command('pulp puppet search cosmos').to(:puppet_search)
+    is_expected.to route_command('pulp puppet search cosmos in dev').to(:puppet_search)
   end
 
-  describe '#rpm_search' do
-    it 'search rpm' do
-      send_command("pulp rpm search cosmos")
+  # describe '#rpm_search' do
+  #   it 'search rpm without repo' do
+  #     send_command("pulp rpm search cosmos")
+  #     puts "*********************"
+  #     #puts replies
+  #   end
+  #   it 'search rpm with repo' do
+  #     send_command("pulp rpm search cosmos in ent-cent7-qa")
+  #     puts "*********************"
+  #     #puts replies
+  #   end
+  # end
+
+  describe '#puppet_search' do
+    it 'search puppet without repo' do
+      send_command("pulp puppet search cicd_test")
+      puts "*********************"
+      #puts replies
+    end
+    it 'search puppet with repo' do
+      send_command("pulp puppet search cicd_test in forge_dev")
+      puts "*********************"
+      #puts replies
+    end
+
+    it 'search puppet without author name' do
+      send_command("pulp puppet search entertainment/cicd_test")
       puts "*********************"
       #puts replies
     end
