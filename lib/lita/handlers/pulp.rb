@@ -132,6 +132,63 @@ module Lita
         }
       )
 
+      route(
+        /^pulp\s+rpm\s+delete\s+newer/i,
+        :delete_newer_rpm,
+        command: true,
+        kwargs: {
+          from: {
+            short: "s",
+          },
+          name: {
+            short: "n"
+          },
+          version: {
+            short: "v"
+          },
+          release: {
+            short: "r"
+          },
+          arch: {
+            short: "a"
+          },
+          publish: {
+            short: "p",
+            boolean: true
+          }
+        },
+        help: {
+          t("help.copy_rpm_key") => t("help.copy_rpm_value")
+        }
+      )
+
+      route(
+        /^pulp\s+puppet\s+delete\s+newer/i,
+        :delete_newer_puppet,
+        command: true,
+        kwargs: {
+          from: {
+            short: "s",
+          },
+          author: {
+            short: "a"
+          },
+          name: {
+            short: "n"
+          },
+          version: {
+            short: "v"
+          },
+          publish: {
+            short: "p",
+            boolean: true
+          }
+        },
+        help: {
+          t("help.copy_puppet_key") => t("help.copy_puppet_value")
+        }
+      )
+
       def rpm_repos(response)
         begin
           result=list_repo(REPO_TYPE_RPM)
@@ -170,7 +227,7 @@ module Lita
         puts "searching for rpm #{name} in repo #{repo}"
         begin
           search_rpm(name, repo)
-        rescue Exception => e
+        rescue StandardError => e
           response.reply e.mesage
         end
 
@@ -192,7 +249,7 @@ module Lita
         begin
           result=search_puppet(author, name, repo)
           response.reply result
-        rescue Exception => e
+        rescue StandardError => e
           response.reply e.message
         end
       end
@@ -206,18 +263,16 @@ module Lita
          name = args[:name]
          version = args[:version]
          arch = args[:arch]
-
-         if from.nil? || to.nil? || relase.nil? ||name.nil? || version.nil? || arch.nil?
-           response.reply "Missing required paramenter"
-         end
-
          delete_newer=args[:delete_newer]||false
          publish=args[:publish]||false
 
          begin
+           if from.nil? || to.nil? || relase.nil? ||name.nil? || version.nil? || arch.nil?
+             raise  "Exception: Missing required paramenter"
+           end
            copy_rpm_between_repo!(from, to, name, version, release, arch, delete_newer, publish)
            response.reply "Command executed successfully"
-         rescue Exception => e
+         rescue StandardError => e
            response.reply e.message
          end
       end
@@ -229,17 +284,53 @@ module Lita
         author = args[:author]
         name = args[:name]
         version = args[:version]
-        if from.nil? || to.nil? || author.nil? ||name.nil? || version.nil?
-          response.reply "Missing required paramenter"
-        end
         delete_newer=args[:delete_newer]||false
         publish=args[:publish]||false
         puts "delete_newer=#{delete_newer} publish=#{publish}"
-
         begin
+          if from.nil? || to.nil? || author.nil? || name.nil? || version.nil?
+            raise "Exception: missing required parameters"
+          end
           copy_puppet_between_repo!(from, to, author, name, version, delete_newer, publish)
           response.reply "Command executed successfully"
-        rescue Excpetion => e
+        rescue StandardError => e
+          response.reply e.message
+        end
+      end
+
+      def delete_newer_rpm(response)
+        args = response.extensions[:kwargs]
+        from = args[:from]
+        release = args[:release]
+        name = args[:name]
+        version = args[:version]
+        arch = args[:arch]
+        publish=args[:publish]||false
+        begin
+          if from.nil? || author.nil? || name.nil? || version.nil?
+            raise "Exception: missing required parameters"
+          end
+          delete_rpm_newer!(from, name, version, relase, arch, publish)
+          response.reply "Command executed successfully"
+        rescue StandardError => e
+          response.reply e.message
+        end
+      end
+
+      def delete_newer_puppet(response)
+        args = response.extensions[:kwargs]
+        from = args[:from]
+        author = args[:author]
+        name = args[:name]
+        version = args[:version]
+        publish=args[:publish]||false
+        begin
+          if from.nil? || author.nil? || name.nil? || version.nil?
+            raise "Exception: missing required parameters"
+          end
+          delete_puppet_newer!(from, author, name, version, publish)
+          response.reply "Command executed successfully"
+        rescue StandardError => e
           response.reply e.message
         end
       end

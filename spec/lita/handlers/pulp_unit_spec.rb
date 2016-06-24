@@ -51,6 +51,9 @@ describe Lita::Handlers::Pulp, lita_handler: true do
   end
 
   describe '#copy_puppet_between_repo' do
+    it 'copy puppet module should fail with missing errors' do
+      send_command("pulp puppet copy -s forge_dev --to forge_qa --author entertainment --name cicd_test")
+    end
     it 'copy puppet module' do
       send_command("pulp puppet copy -s forge_dev --to forge_qa --author entertainment --name cicd_test --version 0.1.33-pre100079-rev159b6f9")
     end
