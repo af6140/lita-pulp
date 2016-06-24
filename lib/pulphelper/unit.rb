@@ -32,7 +32,7 @@ module PulpHelper
           results << result
         end
       else
-        puts "response code = #{code}"
+        raise "Excpetion:response code = #{code}"
       end
       #filter by repo
       if repo
@@ -91,7 +91,7 @@ module PulpHelper
           results << result
         end
       else
-        puts "response code = #{code}"
+        raise "Exception: search response code = #{code}"
       end
       #filter by repo
       if repo
@@ -103,10 +103,5 @@ module PulpHelper
       results
     end
 
-    def copy_rpm(from, to, name, version, release, delete_newer)
-    end
-
-    def copy_puppet(from, to, name, author, version, delete_newer)
-    end
   end
 end
