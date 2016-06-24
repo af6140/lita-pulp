@@ -1,6 +1,6 @@
 # lita-pulp
 
-TODO: Add a description of the plugin.
+A lita handler plugin for pulp server operations.
 
 ## Installation
 
@@ -12,8 +12,24 @@ gem "lita-pulp"
 
 ## Configuration
 
-TODO: Describe any configuration attributes the plugin exposes.
+Configuration options
+
+```ruby
+Lita.configure do |config|
+  config.handlers.pulp.url="https://pulp.co.epi.web"
+  config.handlers.pulp.api_path="/pulp/api/v2/"
+  config.handlers.pulp.username="admin"
+  config.handlers.pulp.password="admin"
+  config.handlers.pulp.verify_ssl=false #optional default to false
+end
+```
 
 ## Usage
 
-TODO: Describe the plugin's features and how to use them.
+It can do following:
+- List all rpm repositories
+- List all puppet repositories
+- Search rpm package
+- Search puppet module
+- Copy rpm package from one repository to another
+- Copy puppet module from one repository to another
