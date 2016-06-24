@@ -20,7 +20,7 @@ module Lita
        :rpm_repos,
        command: true,
        help: {
-         t('help.repos.syntax') => t('help.repos.desc')
+         t('help.rpm_repos.key') => t('help.rpm_repos.value')
        }
       )
 
@@ -29,7 +29,7 @@ module Lita
        :puppet_repos,
        command: true,
        help: {
-         t('help.repos.syntax') => t('help.repos.desc')
+         t('help.puppet_repos.key') => t('help.puppet_repos.value')
        }
       )
 
@@ -38,7 +38,7 @@ module Lita
         :publish_repo,
         command: true,
         help: {
-          t('help.publish_repo.syntax') => t('help.publish_repo.desc')
+          t('help.publish.key') => t('help.publish.value')
         }
       )
 
@@ -47,7 +47,7 @@ module Lita
        :rpm_search,
        command: true,
        help: {
-         t('help.repos.syntax') => t('help.repos.desc')
+         t('help.rmp_search.key') => t('help.rpm_search.value')
        }
       )
 
@@ -56,7 +56,7 @@ module Lita
        :puppet_search,
        command: true,
        help: {
-         t('help.repos.syntax') => t('help.repos.desc')
+         t('help.puppet_search.key') => t('help.puppet_search.value')
        }
       )
 
@@ -158,7 +158,7 @@ module Lita
           }
         },
         help: {
-          t("help.copy_rpm_key") => t("help.copy_rpm_value")
+          t("help.deletw_newer_rpm_key") => t("help.delet_newer_rpm_value")
         }
       )
 
@@ -185,7 +185,7 @@ module Lita
           }
         },
         help: {
-          t("help.copy_puppet_key") => t("help.copy_puppet_value")
+          t("help.deletw_newer_rpm_key") => t("help.delet_newer_rpm_value")
         }
       )
 

@@ -2,3 +2,22 @@ en:
   lita:
     handlers:
       pulp:
+        help:
+          rpm_repos_key: "pulp rpm repos"
+          rpm_repos_value: "List all rpm repositories"
+          puppet_repos_key: "pulp puppet repos"
+          puppet_repos_value: "List all puppet repositories"
+          publish_key: "pulp publish REPO_ID"
+          publish_value: "Publish specified repository"
+          rpm_search_key: "pulp rpm search ssh [in REPO_ID]"
+          rpm_searchvalue: "Search rpm package in specified repository"
+          rpm_search_key: "pulp puppet search [AUTHOR/]MODULE [in REPO_ID]"
+          rpm_searchvalue: "Search puppet module with author/name or name in repoistory with specified REPO_ID"
+          copy_rpm_key: "pulp rpm copy --from SRC_REPO --to DEST_REPO --name PACKAGE --version VERSION --release RELEASE --arch ARCH [--delete_new] [--publish]"
+          copy_rpm_value: "Copy specified rpm package from SRC_REPO to DEST_REPO, optionally delete newer versoin in DEST_REPO and publish the repo"
+          copy_puppet_key: "pulp puppet copy --from SRC_REPO --to DEST_REPO --author author --name PACKAGE --version VERSION [--delete_new] [--publish]"
+          copy_puppet_value: "Copy specified puppet module package from SRC_REPO to DEST_REPO, optionally delete newer version in DEST_REPO and publish the repo"
+          delete_newer_rpm_key: "pulp rpm delete newer --from SRC_REPO --name PACKAGE --version VERSION --release RELEASE --arch ARCH  [--publish]"
+          deletw_newer_rpm_value: "Deletw newer version of specified rpm package from SRC_REPO , optionally publish the repo"
+          delete_newer_puppet_key: "pulp puppet delete newer --from SRC_REPO --author AUTHOR --name MODULE --version VERSION  --arch ARCH  [--publish]"
+          deletw_newer_puppet_value: "Deletw newer version of specified puppet module from SRC_REPO , optionally publish the repo"
