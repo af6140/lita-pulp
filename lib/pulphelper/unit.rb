@@ -80,5 +80,11 @@ module PulpHelper
       end
       results
     end
+
+    def copy_rpm(from, to, name, version, release, delete_newer)
+    end
+
+    def copy_puppet(from, to, name, author, version, delete_newer)
+    end
   end
 end

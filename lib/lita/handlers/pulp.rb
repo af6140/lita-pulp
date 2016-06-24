@@ -74,6 +74,12 @@ module Lita
         search_puppetname, repo)
       end
 
+      def rpm_copy(from, to, name, version, release, delete_newer=false)
+      end
+
+      def puppet_copy(from, to, name, version, release, delete_newer=false)
+      end
+
       Lita.register_handler(self)
     end
   end
