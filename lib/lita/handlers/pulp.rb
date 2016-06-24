@@ -33,13 +33,21 @@ module Lita
       )
 
       route(
-       /^pulp\srpm\ssearch\s(.+)$/,
+       /^pulp\srpm\ssearch\s(\S+)(?>\sin\s)?(\S+)?$/,
        :rpm_search,
        command: true,
        help: {
          t('help.repos.syntax') => t('help.repos.desc')
        }
+      )
 
+      oute(
+       /^pulp\spuppet\ssearch\s([a_zA-Z0-9]+\/)?\S+)(?>\sin\s)?(\S+)?$/,
+       :puppet_search,
+       command: true,
+       help: {
+         t('help.repos.syntax') => t('help.repos.desc')
+       }
       )
 
       def rpm_repos(response)
@@ -54,9 +62,18 @@ module Lita
 
       def rpm_search(response)
         name = response.matches[0][0]
-        puts "searching for rpm #{name}"
-        search_rpm(name)
+        repo = response.matches[1][0]
+        puts "searching for rpm #{name} in repo #{repo}"
+        search_rpm(name, repo)
       end
+
+      def puppet_search(response)
+        name = response.matches[0][0]
+        repo = response.matches[1][0]
+        puts "searching for puppet module #{name} in repo #{repo}"
+        search_puppetname, repo)
+      end
+
       Lita.register_handler(self)
     end
   end
