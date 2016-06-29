@@ -1,4 +1,5 @@
 require 'lita-keyword-arguments'
+#require 'table_print'
 
 module Lita
   module Handlers
@@ -192,7 +193,12 @@ module Lita
       def rpm_repos(response)
         begin
           result=list_repo(REPO_TYPE_RPM)
-          response.reply result
+          #puts "********result"
+          s = StringIO.new
+          result.each do |r|
+            s << "["<< r[:id] << "] : " << r[:name] << "," << r[:description] << "\n"
+          end
+          response.reply s.string
         rescue Exception => e
           response.reply e.message
         end
@@ -201,7 +207,12 @@ module Lita
       def puppet_repos(response)
           begin
             result=list_repo(REPO_TYPE_PUPPET)
-            response.reply result
+            #response.reply result.to_json
+            s = StringIO.new
+            result.each do |r|
+              s << "["<< r[:id] << "] : " << r[:name] << "," << r[:description] << "\n"
+            end
+            response.reply s.string
           rescue Exception => e
             response.reply e.message
           end
@@ -226,7 +237,21 @@ module Lita
         repo = response.matches[0][1]
         puts "searching for rpm #{name} in repo #{repo}"
         begin
-          search_rpm(name, repo)
+          # result array of
+          # result = {
+          #   :name => unit["name"],
+          #   :epoch => unit["epoch"],
+          #   :version => unit["version"],
+          #   :release => unit["release"],
+          #   :checksum =>  unit["checksum"],
+          #   :repos => unit["repository_memberships"]
+          # }
+          result=search_rpm(name, repo)
+          s = StringIO.new
+          result.each do |r|
+            s << "["<< r[:name] << "] : " << r[:version] << "," << r[:release] << "," << r[:repos] <<"\n"
+          end
+          response.reply s.string
         rescue StandardError => e
           response.reply e.message
         end
@@ -248,7 +273,11 @@ module Lita
         puts "searching for puppet module #{name} with author: #{author} in repo #{repo}, full_name = #{full_name}"
         begin
           result=search_puppet(author, name, repo)
-          response.reply result
+          s = StringIO.new
+          result.each do |r|
+            s << "["<< r[:author] << "/" << r[:name]<< "] :" <<r[:version] << "," << r[:repos] <<"\n"
+          end
+          response.reply s.string
         rescue StandardError => e
           response.reply e.message
         end
@@ -334,6 +363,7 @@ module Lita
 
 
       Lita.register_handler(self)
+      #Lita.register_hook(:trigger_route, Lita::Extensions::KeywordArguments)
     end
   end
 end

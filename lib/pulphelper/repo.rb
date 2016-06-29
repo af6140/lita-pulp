@@ -6,6 +6,38 @@ module PulpHelper
     REPO_TYPE_RPM="rpm-repo"
     REPO_TYPE_PUPPET="puppet-repo"
 
+    def list_repo(type)
+      criteria = {
+        "filters" => {
+          "notes._repo-type" => {
+            "$in" => [type]
+          }
+        }
+      }
+      #puts "criteria:#{criteria}"
+      response=client.resources.repository.search(criteria)
+      code=response.code
+      body=response.body
+      result=[]
+      case code
+      when 200
+        repos=JSON.parse(body.to_json)
+        #puts repos
+        repos.each do |repo|
+            repo_data={
+              :id => repo["id"],
+              :name => repo["display_name"],
+              :description => repo["description"]
+            }
+            #puts repos
+            result << repo_data
+        end
+      else
+        raise "Exception: cannot list repository: response code :#{code}"
+      end
+      return result
+    end#list_repo
+
     #yum repo
     # distributors
     #   distributor_type_id : yum_distributor
@@ -29,7 +61,7 @@ module PulpHelper
     #    config :
     # importers:
     #   importer_type_id: "puppet_importer"
-    def list_repo(type)
+    def list_repo_details(type)
       criteria = {
         "filters" => {
           "notes._repo-type" => {
@@ -106,7 +138,7 @@ module PulpHelper
         raise "Exception: cannot list repository: response code :#{code}"
       end
       return result
-    end#list_repo
+    end#list_repo_details
 
     def publish_repo!(forge_id)
       message = "Publish #{forge_id} submitted successfully"

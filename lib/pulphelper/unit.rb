@@ -11,11 +11,11 @@ module PulpHelper
         },
         "sort" => [["epoch", "descending"], ["version", "descending"],  ["release", "descending"]]
       }
-      puts "search criteria #{criteria} in repo : #{repo}"
+      #puts "search criteria #{criteria} in repo : #{repo}"
       response = client.resources.unit.search("rpm", criteria, {"include_repos" => true})
       code = response.code
       body = response.body
-      puts body
+      #puts body
       results =[]
       case code
       when 200
@@ -40,7 +40,7 @@ module PulpHelper
           r[:repos].include? repo
         }
       end
-      puts "result:#{results}"
+      #puts "result:#{results}"
       results
     end # end search
     def search_puppet(author, name, repo)
@@ -72,7 +72,7 @@ module PulpHelper
           "sort" => [["author", "descending"],["name", "descending"],["version", "descending"]]
         }
       end
-      puts "search criteria #{criteria}"
+      #puts "search criteria #{criteria}"
       response = client.resources.unit.search("puppet_module", criteria, {"include_repos" => true})
       code = response.code
       body = response.body
@@ -99,7 +99,7 @@ module PulpHelper
           r[:repos].include? repo
         }
       end
-      puts results
+      #puts results
       results
     end
 
