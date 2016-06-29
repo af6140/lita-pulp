@@ -18,6 +18,6 @@ en:
           copy_puppet_key: "pulp puppet copy --from SRC_REPO --to DEST_REPO --author author --name PACKAGE --version VERSION [--delete_new] [--publish]"
           copy_puppet_value: "Copy specified puppet module package from SRC_REPO to DEST_REPO, optionally delete newer version in DEST_REPO and publish the repo"
           delete_newer_rpm_key: "pulp rpm delete newer --from SRC_REPO --name PACKAGE --version VERSION --release RELEASE --arch ARCH  [--publish] [--delete_new]"
-          deletw_newer_rpm_value: "Deletw newer version of specified rpm package from SRC_REPO , optionally publish the repo"
+          delete_newer_rpm_value: "Deletw newer version of specified rpm package from SRC_REPO , optionally publish the repo"
           delete_newer_puppet_key: "pulp puppet delete newer --from SRC_REPO --author AUTHOR --name MODULE --version VERSION  --arch ARCH  [--publish] [--delete_new]"
-          deletw_newer_puppet_value: "Deletw newer version of specified puppet module from SRC_REPO , optionally publish the repo"
+          delete_newer_puppet_value: "Deletw newer version of specified puppet module from SRC_REPO , optionally publish the repo"
