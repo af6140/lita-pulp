@@ -1,6 +1,8 @@
 require "spec_helper"
 
-describe Lita::Handlers::Pulp, lita_handler: true do
+vcr_options = { :record => :new_episodes }
+
+describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
 
   before do
     registry.config.handlers.pulp.url="https://pulp.co.epi.web"

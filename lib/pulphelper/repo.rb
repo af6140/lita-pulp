@@ -6,6 +6,29 @@ module PulpHelper
     REPO_TYPE_RPM="rpm-repo"
     REPO_TYPE_PUPPET="puppet-repo"
 
+    #yum repo
+    # distributors
+    #   distributor_type_id : yum_distributor
+    #     auto_publish: true or false
+    #     last_publish:
+    #     config:
+    #       http:
+    #       https:
+    #       relative_url
+    # importers
+    #    importer_type_id:  yum_importer
+    #    last_sync:
+    #    config:
+    #      feed
+
+    #puppet repo
+    # distributors:
+    #  distributor_type_id: "puppet_distributor"
+    #    auto_publish:
+    #    last_publish
+    #    config :
+    # importers:
+    #   importer_type_id: "puppet_importer"
     def list_repo(type)
       criteria = {
         "filters" => {
@@ -15,7 +38,7 @@ module PulpHelper
         }
       }
       #puts "criteria:#{criteria}"
-      response=client.resources.repository.search(criteria)
+      response=client.resources.repository.search(criteria, {"details" => true})
       code=response.code
       body=response.body
       result=[]
@@ -24,15 +47,60 @@ module PulpHelper
         repos=JSON.parse(body.to_json)
         #puts repos
         repos.each do |repo|
-          repo_data={
-            :id => repo["id"],
-            :name => repo["display_name"],
-            :description => repo["description"],
-            :content_unit_counts => repo["content_unit_counts"],
-            :url => repo["_href"],
-          }
-          #puts repo_data
-          result << repo_data
+          case type
+          when REPO_TYPE_RPM
+            yum_distributor = repo["distributors"].select{ |d| d["distributor_type_id"] == 'yum_distributor'}[0]
+            yum_importer = repo["distributors"].select{ |d| d["distributor_type_id"] == 'yum_importer'}[0]
+
+            distributor = nil
+            if  yum_distributor
+              distributor = {
+                :auto_publish => yum_distributor["auto_publish"],
+                :last_publish => yum_distributor["last_publish"],
+                :config => yum_distributor["config"]
+              }
+            end
+            importer = nil
+            if yum_importer
+              importer = {
+                :last_sync => yum_importer["last_sync"],
+                :config => yum_importer["config"]
+              }
+            end
+
+            repo_data={
+              :id => repo["id"],
+              :name => repo["display_name"],
+              :description => repo["description"],
+              :content_unit_counts => repo["content_unit_counts"],
+              :type => REPO_TYPE_RPM,
+              :distributor => distributor,
+              :importer => importer,
+            }
+            #puts repos
+            result << repo_data
+          when REPO_TYPE_PUPPET
+            puppet_distributor = repo["distributors"].select{ |d| d["distributor_type_id"] == 'puppet_distributor'}[0]
+            distributor =nil
+            if puppet_distributor
+              distributor = {
+                :auto_publish => yum_distributor["auto_publish"],
+                :last_publish => yum_distributor["last_publish"],
+                :config => yum_distributor["config"]
+              }
+            end
+            repo_data={
+              :id => repo["id"],
+              :name => repo["display_name"],
+              :description => repo["description"],
+              :content_unit_counts => repo["content_unit_counts"],
+              :type => REPO_TYPE_PUPPET,
+              :distributor => distributor
+            }
+            #puts repos
+            result << repo_data
+          else
+          end
         end
       else
         raise "Exception: cannot list repository: response code :#{code}"
@@ -76,12 +144,11 @@ module PulpHelper
           # end
         end
       rescue StandardError => e
-        raise "Error delete module newer than #{author}-#{name}-#{version} from repo #{forge_id}: #{e.message}"
+        raise "Error delete rpm pakcage older than #{name}-#{version}-#{release} from repo #{forge_id}: #{e.message}"
       end
     end#delete_rpm_newer
 
     def copy_rpm_between_repo!(from_repo, to_repo, name, version, release, arch, delete_new=false, auto_publish=true)
-
       search_params=get_rpm_search_params(name, version, release, arch)
       begin
         unit_search_response=client.resources.unit.search('rpm', search_params[:criteria], search_params[:optional])
@@ -101,7 +168,7 @@ module PulpHelper
         end
 
         if(delete_new)
-          delete_rpm_newer!(to_repo,author, name, version, auto_publish)
+          delete_rpm_newer!(to_repo, name, version, release, arch,  auto_publish)
         end
       rescue StandardError => e
         raise "Exception: Error copy module between repo: #{e.to_s}"
@@ -189,7 +256,7 @@ module PulpHelper
       return search_params
     end# get_rpm_search_params
 
-    def get_rpm_unit_ass_criteria(name, verison, release, arch)
+    def get_rpm_unit_ass_criteria(name, version, release, arch)
        #/pulp/api/v2/repositories/<repo_id>/actions/unassociate/
       criteria= {
         :filters => {

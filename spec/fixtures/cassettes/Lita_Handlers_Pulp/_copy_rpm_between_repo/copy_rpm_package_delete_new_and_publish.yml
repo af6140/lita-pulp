@@ -1,0 +1,264 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/content/units/rpm/search/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"filters":{"name":"cosmos-web","version":"1.0.0_SNAPSHOT","release":"b20160627.211338.63","arch":"noarch"},"sort":[["version","descending"]],"limit":1,"fields":["name","version","release","arch"]},"include_repos":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '231'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:44:02 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '310'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '[{"repository_memberships": ["ent-cent7-qa", "ent-cent7-dev"], "name":
+        "cosmos-web", "version": "1.0.0_SNAPSHOT", "release": "b20160627.211338.63",
+        "_id": "c3dcddf1-3d2f-4387-b06d-0f13076c2e08", "arch": "noarch", "children":
+        {}, "_href": "/pulp/api/v2/content/units/rpm/c3dcddf1-3d2f-4387-b06d-0f13076c2e08/"}]'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:13 GMT
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/ent-cent7-qa/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"ent-cent7-dev","criteria":{"type_ids":["rpm"],"filters":{"association":{"unit_id":{"$in":["c3dcddf1-3d2f-4387-b06d-0f13076c2e08"]}}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '153'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:44:02 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/1cbf9de0-48d5-4e92-b6ba-996ccea506c4/",
+        "task_id": "1cbf9de0-48d5-4e92-b6ba-996ccea506c4"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:13 GMT
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/ent-cent7-qa/actions/unassociate/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"filters":{"unit":{"$and":[{"name":"cosmos-web"},{"arch":"noarch"},{"$or":[{"version":{"$gt":"1.0.0_SNAPSHOT"},"release":{"$gt":"b20160627.211338.63"}}]}]}},"type_ids":["rpm"]}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '190'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:44:03 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/e7b9031f-ce94-4b02-9438-2e725c55ebad/",
+        "task_id": "e7b9031f-ce94-4b02-9438-2e725c55ebad"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:13 GMT
+- request:
+    method: get
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/ent-cent7-qa/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:44:03 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '1656'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {"checksum_type": "sha256"}, "display_name": "ent-cent7-qa",
+        "description": null, "distributors": [{"repo_id": "ent-cent7-qa", "_href":
+        "/pulp/api/v2/repositories/ent-cent7-qa/distributors/yum_distributor/", "_ns":
+        "repo_distributors", "last_publish": "2016-06-29T14:28:59Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "56b5142ec20cde71a353fc80"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "entertainment/qa/centos/7/x86_64", "https": true},
+        "id": "yum_distributor"}, {"repo_id": "ent-cent7-qa", "_href": "/pulp/api/v2/repositories/ent-cent7-qa/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:29:12Z", "distributor_type_id":
+        "export_distributor", "auto_publish": false, "scratchpad": {}, "_id": {"$oid":
+        "56b5142ec20cde71a353fc81"}, "config": {"http": true, "relative_url": "entertainment/qa/centos/7/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 23}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-cent7-qa/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-02-05T21:30:24Z", "repo_id": "ent-cent7-qa", "_id": {"$oid": "56b5142ec20cde71a353fc7f"},
+        "config": {"ssl_validation": false}, "id": "yum_importer"}], "locally_stored_units":
+        23, "_id": {"$oid": "56b5142ec20cde71a353fc7e"}, "total_repository_units":
+        23, "id": "ent-cent7-qa", "_href": "/pulp/api/v2/repositories/ent-cent7-qa/"}'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:14 GMT
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/ent-cent7-qa/actions/publish/
+    body:
+      encoding: UTF-8
+      string: '{"id":"yum_distributor"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '24'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:44:04 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/116b1480-c3db-474c-b133-a19a493d02ad/",
+        "task_id": "116b1480-c3db-474c-b133-a19a493d02ad"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:14 GMT
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/ent-cent7-qa/actions/publish/
+    body:
+      encoding: UTF-8
+      string: '{"id":"export_distributor"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '27'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:44:04 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/00da7d12-8152-4fd7-96d3-b0d06e9c8840/",
+        "task_id": "00da7d12-8152-4fd7-96d3-b0d06e9c8840"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:15 GMT
+recorded_with: VCR 3.0.3

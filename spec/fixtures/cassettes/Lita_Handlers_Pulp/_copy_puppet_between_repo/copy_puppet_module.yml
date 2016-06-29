@@ -1,0 +1,86 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/content/units/puppet_module/search/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"filters":{"author":"entertainment","name":"cicd_test","version":"0.1.33-pre100079-rev159b6f9"},"sort":[["version","descending"]],"limit":1,"fields":["author","name","version"]},"include_repos":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '212'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:43:58 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '314'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '[{"repository_memberships": ["forge_qa", "forge_build", "forge_dev"],
+        "version": "0.1.33-pre100079-rev159b6f9", "_href": "/pulp/api/v2/content/units/puppet_module/c3d5f09d-88a5-472e-880b-f4dbb4b5b7c8/",
+        "author": "entertainment", "_id": "c3d5f09d-88a5-472e-880b-f4dbb4b5b7c8",
+        "children": {}, "name": "cicd_test"}]'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:09 GMT
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/forge_qa/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"forge_dev","criteria":{"type_ids":["puppet_module"],"filters":{"association":{"unit_id":{"$in":["c3d5f09d-88a5-472e-880b-f4dbb4b5b7c8"]}}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '159'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:43:59 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/1e4971b6-4cab-48ad-b774-7c1467b1e2f0/",
+        "task_id": "1e4971b6-4cab-48ad-b774-7c1467b1e2f0"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:09 GMT
+recorded_with: VCR 3.0.3

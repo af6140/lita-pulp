@@ -1,0 +1,593 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/search/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"filters":{"notes._repo-type":{"$in":["rpm-repo"]}}},"details":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '81'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:43:07 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '50573'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '[{"scratchpad": {"checksum_type": "sha1"}, "display_name": "puppetlabs-el5_x86_64",
+        "description": null, "distributors": [{"repo_id": "puppetlabs-el5_x86_64",
+        "_href": "/pulp/api/v2/repositories/puppetlabs-el5_x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:00:24Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5411d133c20cde0a3becc9f3"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": true, "relative_url": "puppetlabs/el/5/products/x86_64"}, "id": "yum_distributor"},
+        {"repo_id": "puppetlabs-el5_x86_64", "_href": "/pulp/api/v2/repositories/puppetlabs-el5_x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "5411d133c20cde0a3becc9f4"},
+        "config": {"http": true, "relative_url": "puppetlabs/el/5/products/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 537}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1467150988, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/puppetlabs-el5_x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:07Z", "repo_id": "puppetlabs-el5_x86_64", "_id": {"$oid":
+        "5411d133c20cde0a3becc9f2"}, "config": {"feed": "https://yum.puppetlabs.com/el/5/products/x86_64/",
+        "validate": true}, "id": "yum_importer"}], "_id": {"$oid": "5411d133c20cde0a3becc9f1"},
+        "id": "puppetlabs-el5_x86_64", "_href": "/pulp/api/v2/repositories/puppetlabs-el5_x86_64/"},
+        {"scratchpad": {"checksum_type": "sha1"}, "display_name": "puppetlabs-el5-x86_64-dependencies",
+        "description": null, "distributors": [{"repo_id": "puppetlabs-el5-x86_64-dependencies",
+        "_href": "/pulp/api/v2/repositories/puppetlabs-el5-x86_64-dependencies/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:03:59Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5411fb25c20cde0a3beccb4e"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": true, "relative_url": "puppetlabs/el/5/dependencies/x86_64/"}, "id":
+        "yum_distributor"}, {"repo_id": "puppetlabs-el5-x86_64-dependencies", "_href":
+        "/pulp/api/v2/repositories/puppetlabs-el5-x86_64-dependencies/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "5411fb25c20cde0a3beccb4f"},
+        "config": {"http": true, "relative_url": "puppetlabs/el/5/dependencies/x86_64/",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 131}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1467151066, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/puppetlabs-el5-x86_64-dependencies/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:22Z", "repo_id": "puppetlabs-el5-x86_64-dependencies", "_id":
+        {"$oid": "5411fb25c20cde0a3beccb4d"}, "config": {"feed": "http://yum.puppetlabs.com/el/5/dependencies/x86_64/",
+        "validate": true}, "id": "yum_importer"}], "_id": {"$oid": "5411fb25c20cde0a3beccb4c"},
+        "id": "puppetlabs-el5-x86_64-dependencies", "_href": "/pulp/api/v2/repositories/puppetlabs-el5-x86_64-dependencies/"},
+        {"scratchpad": {"checksum_type": "sha1"}, "display_name": "puppetlabs-el6-x86_64-dependencies",
+        "description": null, "distributors": [{"repo_id": "puppetlabs-el6-x86_64-dependencies",
+        "_href": "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-dependencies/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:00:48Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5411fbb9c20cde0a3cc4a615"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": true, "relative_url": "puppetlabs/el/6/dependencies/x86_64/"}, "id":
+        "yum_distributor"}, {"repo_id": "puppetlabs-el6-x86_64-dependencies", "_href":
+        "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-dependencies/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "5411fbb9c20cde0a3cc4a616"},
+        "config": {"http": true, "relative_url": "puppetlabs/el/6/dependencies/x86_64/",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 77}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1467150733, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-dependencies/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:16Z", "repo_id": "puppetlabs-el6-x86_64-dependencies", "_id":
+        {"$oid": "5411fbb9c20cde0a3cc4a614"}, "config": {"feed": "http://yum.puppetlabs.com/el/6/dependencies/x86_64/",
+        "validate": true}, "id": "yum_importer"}], "_id": {"$oid": "5411fbb9c20cde0a3cc4a613"},
+        "id": "puppetlabs-el6-x86_64-dependencies", "_href": "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-dependencies/"},
+        {"scratchpad": {"checksum_type": "sha1"}, "display_name": "puppetlabs-el6-x86_64-products",
+        "description": null, "distributors": [{"repo_id": "puppetlabs-el6-x86_64-products",
+        "_href": "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-products/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:00:46Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "541209b9c20cde116c13af86"}, "config": {"checksum_type": "sha1", "http": true,
+        "relative_url": "puppetlabs/el/6/products/x86_64/", "https": true}, "id":
+        "yum_distributor"}, {"repo_id": "puppetlabs-el6-x86_64-products", "_href":
+        "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-products/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "541209b9c20cde116c13af87"},
+        "config": {"http": true, "relative_url": "puppetlabs/el/6/products/x86_64/",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 554}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1467150641, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-products/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:13Z", "repo_id": "puppetlabs-el6-x86_64-products", "_id":
+        {"$oid": "541209b9c20cde116c13af85"}, "config": {"feed": "http://yum.puppetlabs.com/el/6/products/x86_64/",
+        "validate": true}, "id": "yum_importer"}], "_id": {"$oid": "541209b9c20cde116c13af84"},
+        "id": "puppetlabs-el6-x86_64-products", "_href": "/pulp/api/v2/repositories/puppetlabs-el6-x86_64-products/"},
+        {"scratchpad": {"checksum_type": "sha256"}, "display_name": "ent-dev-centos6-64",
+        "description": null, "distributors": [{"repo_id": "ent-dev-centos6-64", "_href":
+        "/pulp/api/v2/repositories/ent-dev-centos6-64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2014-09-11T20:54:54Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54120af7c20cde116d919de7"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "dev/CentOS/6/os/x86_64", "https": false}, "id": "yum_distributor"},
+        {"repo_id": "ent-dev-centos6-64", "_href": "/pulp/api/v2/repositories/ent-dev-centos6-64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "54120af7c20cde116d919de8"},
+        "config": {"http": true, "relative_url": "dev/CentOS/6/os/x86_64", "https":
+        false}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"package_group":
+        213, "distribution": 1, "package_category": 14, "rpm": 6367}, "_ns": "repos",
+        "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-dev-centos6-64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:01Z", "repo_id": "ent-dev-centos6-64", "_id": {"$oid": "54120af7c20cde116d919de6"},
+        "config": {"feed": "http://pulp.co.epi.web/pulp/repos/CentOS/6/os/x86_64/"},
+        "id": "yum_importer"}], "_id": {"$oid": "54120af7c20cde116d919de5"}, "id":
+        "ent-dev-centos6-64", "_href": "/pulp/api/v2/repositories/ent-dev-centos6-64/"},
+        {"scratchpad": {"checksum_type": "sha256"}, "display_name": "CentOS 6 Updates
+        Mirror", "description": "Mirrored from kernel.org", "distributors": [{"repo_id":
+        "centos6-updates", "_href": "/pulp/api/v2/repositories/centos6-updates/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:08:13Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5416f87ec20cde0689ce6501"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "centos/6/updates/x86_64/", "https": true}, "id": "yum_distributor"},
+        {"repo_id": "centos6-updates", "_href": "/pulp/api/v2/repositories/centos6-updates/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "5416f87ec20cde0689ce6502"},
+        "config": {"http": true, "relative_url": "centos/6/updates/x86_64/", "https":
+        true}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 4524,
+        "drpm": 4445}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1466691747, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/centos6-updates/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T14:00:06Z", "repo_id": "centos6-updates", "_id": {"$oid": "5416f87ec20cde0689ce6500"},
+        "config": {"feed": "http://mirrors.kernel.org/centos/6/updates/x86_64/", "max_downloads":
+        50, "validate": true}, "id": "yum_importer"}], "_id": {"$oid": "5416f87ec20cde0689ce64ff"},
+        "id": "centos6-updates", "_href": "/pulp/api/v2/repositories/centos6-updates/"},
+        {"scratchpad": {}, "display_name": "Entertainment CentOS 5 Repo", "description":
+        null, "distributors": [{"repo_id": "ent-centos5", "_href": "/pulp/api/v2/repositories/ent-centos5/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2014-11-21T21:43:29Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "541afd18c20cde068ad31497"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": true, "relative_url": "entertainment/centos/5/x86_64"}, "id": "yum_distributor"},
+        {"repo_id": "ent-centos5", "_href": "/pulp/api/v2/repositories/ent-centos5/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "541afd18c20cde068ad31498"},
+        "config": {"http": true, "relative_url": "entertainment/centos/5/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 33}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-centos5/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:17Z", "repo_id": "ent-centos5", "_id": {"$oid": "541afd18c20cde068ad31496"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "541afd18c20cde068ad31495"},
+        "id": "ent-centos5", "_href": "/pulp/api/v2/repositories/ent-centos5/"}, {"scratchpad":
+        {"checksum_type": "sha256"}, "display_name": "CentOS 7 x86_64 OS Mirror",
+        "description": null, "distributors": [{"repo_id": "centos7-os", "_href": "/pulp/api/v2/repositories/centos7-os/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:03:28Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54aaf50dc20cde2100101126"}, "config": {"checksum_type": "sha256", "http":
+        true, "https": true, "relative_url": "centos/7/os/x86_64/"}, "id": "yum_distributor"},
+        {"repo_id": "centos7-os", "_href": "/pulp/api/v2/repositories/centos7-os/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "54aaf50dc20cde2100101127"},
+        "config": {"http": true, "relative_url": "centos/7/os/x86_64/", "https": true},
+        "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"package_group":
+        81, "distribution": 1, "package_category": 11, "rpm": 15142, "package_environment":
+        10}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision": 1449700451,
+        "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/centos7-os/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:18Z", "repo_id": "centos7-os", "_id": {"$oid": "54aaf50dc20cde2100101125"},
+        "config": {"feed": "http://mirrors.kernel.org/centos/7/os/x86_64/"}, "id":
+        "yum_importer"}], "_id": {"$oid": "54aaf50dc20cde2100101124"}, "id": "centos7-os",
+        "_href": "/pulp/api/v2/repositories/centos7-os/"}, {"scratchpad": {"checksum_type":
+        "sha256"}, "display_name": "CentOS 7 x86_64 Updates Mirror", "description":
+        null, "distributors": [{"repo_id": "centos7-updates", "_href": "/pulp/api/v2/repositories/centos7-updates/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:07:45Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54ad5d2ac20cde03d1490d34"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "centos/7/updates/x86_64/", "https": false}, "id": "yum_distributor"},
+        {"repo_id": "centos7-updates", "_href": "/pulp/api/v2/repositories/centos7-updates/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "54ad5d2ac20cde03d1490d35"},
+        "config": {"http": true, "relative_url": "centos/7/updates/x86_64/", "https":
+        false}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 5403,
+        "drpm": 5285}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1467156177, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/centos7-updates/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:06Z", "repo_id": "centos7-updates", "_id": {"$oid": "54ad5d2ac20cde03d1490d33"},
+        "config": {"feed": "http://mirrors.kernel.org/centos/7/updates/x86_64/"},
+        "id": "yum_importer"}], "_id": {"$oid": "54ad5d2ac20cde03d1490d32"}, "id":
+        "centos7-updates", "_href": "/pulp/api/v2/repositories/centos7-updates/"},
+        {"scratchpad": {"checksum_type": "sha1"}, "display_name": "Puppetlabs El7
+        x86_64 Products Repo", "description": null, "distributors": [{"repo_id": "puppetlabs-el7-x86_64-products",
+        "_href": "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-products/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:00:24Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54ad607cc20cde03d03484f2"}, "config": {"checksum_type": "sha1", "http": true,
+        "relative_url": "puppetlabs/el/7/products/x86_64", "https": false}, "id":
+        "yum_distributor"}, {"repo_id": "puppetlabs-el7-x86_64-products", "_href":
+        "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-products/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "54ad607cc20cde03d03484f3"},
+        "config": {"http": true, "relative_url": "puppetlabs/el/7/products/x86_64",
+        "https": false}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 213}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1467150876, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-products/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:11Z", "repo_id": "puppetlabs-el7-x86_64-products", "_id":
+        {"$oid": "54ad607cc20cde03d03484f1"}, "config": {"feed": "http://yum.puppetlabs.com/el/7/products/x86_64/"},
+        "id": "yum_importer"}], "_id": {"$oid": "54ad607cc20cde03d03484f0"}, "id":
+        "puppetlabs-el7-x86_64-products", "_href": "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-products/"},
+        {"scratchpad": {"checksum_type": "sha1"}, "display_name": "Puppetlabs El7
+        x86_64 Dependencies Repo", "description": null, "distributors": [{"repo_id":
+        "puppetlabs-el7-x86_64-dependencies", "_href": "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-dependencies/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:00:31Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54ad60e4c20cde03d1490e02"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": false, "relative_url": "puppetlabs/el/7/dependencies/x86_64/"}, "id":
+        "yum_distributor"}, {"repo_id": "puppetlabs-el7-x86_64-dependencies", "_href":
+        "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-dependencies/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "54ad60e4c20cde03d1490e03"},
+        "config": {"http": true, "relative_url": "puppetlabs/el/7/dependencies/x86_64/",
+        "https": false}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 17}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1467150898, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-dependencies/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:12Z", "repo_id": "puppetlabs-el7-x86_64-dependencies", "_id":
+        {"$oid": "54ad60e4c20cde03d1490e01"}, "config": {"feed": "http://yum.puppetlabs.com/el/7/dependencies/x86_64/"},
+        "id": "yum_importer"}], "_id": {"$oid": "54ad60e4c20cde03d1490e00"}, "id":
+        "puppetlabs-el7-x86_64-dependencies", "_href": "/pulp/api/v2/repositories/puppetlabs-el7-x86_64-dependencies/"},
+        {"scratchpad": {"checksum_type": "sha256"}, "display_name": "CentOS 7 x86_64
+        Extras Mirror", "description": null, "distributors": [{"repo_id": "centos7-extras",
+        "_href": "/pulp/api/v2/repositories/centos7-extras/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:04:19Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54ae98b0c20cde03d1490e37"}, "config": {"checksum_type": "sha256", "http":
+        true, "https": false, "relative_url": "centos/7/extras/x86_64/"}, "id": "yum_distributor"},
+        {"repo_id": "centos7-extras", "_href": "/pulp/api/v2/repositories/centos7-extras/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "54ae98b0c20cde03d1490e38"},
+        "config": {"http": true, "relative_url": "centos/7/extras/x86_64/", "https":
+        false}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 518,
+        "drpm": 369}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1466858547, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/centos7-extras/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:29Z", "repo_id": "centos7-extras", "_id": {"$oid": "54ae98b0c20cde03d1490e36"},
+        "config": {"feed": "http://mirrors.kernel.org/centos/7/extras/x86_64/"}, "id":
+        "yum_importer"}], "_id": {"$oid": "54ae98b0c20cde03d1490e35"}, "id": "centos7-extras",
+        "_href": "/pulp/api/v2/repositories/centos7-extras/"}, {"scratchpad": {"checksum_type":
+        "sha256"}, "display_name": "CentOS 7 x86_64 Centosplus Mirror", "description":
+        null, "distributors": [{"repo_id": "centos7-centosplus", "_href": "/pulp/api/v2/repositories/centos7-centosplus/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T13:03:54Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54ae98c9c20cde03d034852d"}, "config": {"checksum_type": "sha256", "http":
+        true, "https": false, "relative_url": "centos/7/centosplus/x86_64/"}, "id":
+        "yum_distributor"}, {"repo_id": "centos7-centosplus", "_href": "/pulp/api/v2/repositories/centos7-centosplus/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "54ae98c9c20cde03d034852e"},
+        "config": {"http": true, "relative_url": "centos/7/centosplus/x86_64/", "https":
+        false}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 273,
+        "drpm": 260}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision":
+        1466894762, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/centos7-centosplus/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:19Z", "repo_id": "centos7-centosplus", "_id": {"$oid": "54ae98c9c20cde03d034852c"},
+        "config": {"feed": "http://mirrors.kernel.org/centos/7/centosplus/x86_64/"},
+        "id": "yum_importer"}], "_id": {"$oid": "54ae98c9c20cde03d034852b"}, "id":
+        "centos7-centosplus", "_href": "/pulp/api/v2/repositories/centos7-centosplus/"},
+        {"scratchpad": {"checksum_type": "sha256"}, "display_name": "epel-centos7",
+        "description": null, "distributors": [{"repo_id": "epel-centos7", "_href":
+        "/pulp/api/v2/repositories/epel-centos7/distributors/yum_distributor/", "_ns":
+        "repo_distributors", "last_publish": "2016-06-29T14:08:15Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5522d754c20cde468690403a"}, "config": {"checksum_type": "sha256", "gpgkey":
+        "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: GnuPG v1.4.11 (GNU/Linux)\n\nmQINBFKuaIQBEAC1UphXwMqCAarPUH/ZsOFslabeTVO2pDk5YnO96f+rgZB7xArB\nOSeQk7B90iqSJ85/c72OAn4OXYvT63gfCeXpJs5M7emXkPsNQWWSju99lW+AqSNm\njYWhmRlLRGl0OO7gIwj776dIXvcMNFlzSPj00N2xAqjMbjlnV2n2abAE5gq6VpqP\nvFXVyfrVa/ualogDVmf6h2t4Rdpifq8qTHsHFU3xpCz+T6/dGWKGQ42ZQfTaLnDM\njToAsmY0AyevkIbX6iZVtzGvanYpPcWW4X0RDPcpqfFNZk643xI4lsZ+Y2Er9Yu5\nS/8x0ly+tmmIokaE0wwbdUu740YTZjCesroYWiRg5zuQ2xfKxJoV5E+Eh+tYwGDJ\nn6HfWhRgnudRRwvuJ45ztYVtKulKw8QQpd2STWrcQQDJaRWmnMooX/PATTjCBExB\n9dkz38Druvk7IkHMtsIqlkAOQMdsX1d3Tov6BE2XDjIG0zFxLduJGbVwc/6rIc95\nT055j36Ez0HrjxdpTGOOHxRqMK5m9flFbaxxtDnS7w77WqzW7HjFrD0VeTx2vnjj\nGqchHEQpfDpFOzb8LTFhgYidyRNUflQY35WLOzLNV+pV3eQ3Jg11UFwelSNLqfQf\nuFRGc+zcwkNjHh5yPvm9odR1BIfqJ6sKGPGbtPNXo7ERMRypWyRz0zi0twARAQAB\ntChGZWRvcmEgRVBFTCAoNykgPGVwZWxAZmVkb3JhcHJvamVjdC5vcmc+iQI4BBMB\nAgAiBQJSrmiEAhsPBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRBqL66iNSxk\n5cfGD/4spqpsTjtDM7qpytKLHKruZtvuWiqt5RfvT9ww9GUUFMZ4ZZGX4nUXg49q\nixDLayWR8ddG/s5kyOi3C0uX/6inzaYyRg+Bh70brqKUK14F1BrrPi29eaKfG+Gu\nMFtXdBG2a7OtPmw3yuKmq9Epv6B0mP6E5KSdvSRSqJWtGcA6wRS/wDzXJENHp5re\n9Ism3CYydpy0GLRA5wo4fPB5uLdUhLEUDvh2KK//fMjja3o0L+SNz8N0aDZyn5Ax\nCU9RB3EHcTecFgoy5umRj99BZrebR1NO+4gBrivIfdvD4fJNfNBHXwhSH9ACGCNv\nHnXVjHQF9iHWApKkRIeh8Fr2n5dtfJEF7SEX8GbX7FbsWo29kXMrVgNqHNyDnfAB\nVoPubgQdtJZJkVZAkaHrMu8AytwT62Q4eNqmJI1aWbZQNI5jWYqc6RKuCK6/F99q\nthFT9gJO17+yRuL6Uv2/vgzVR1RGdwVLKwlUjGPAjYflpCQwWMAASxiv9uPyYPHc\nErSrbRG0wjIfAR3vus1OSOx3xZHZpXFfmQTsDP7zVROLzV98R3JwFAxJ4/xqeON4\nvCPFU6OsT3lWQ8w7il5ohY95wmujfr6lk89kEzJdOTzcn7DBbUru33CQMGKZ3Evt\nRjsC7FDbL017qxS+ZVA/HGkyfiu4cpgV8VUnbql5eAZ+1Ll6Dw==\n=hdPa\n-----END
+        PGP PUBLIC KEY BLOCK-----\n", "http": true, "relative_url": "epel/centos/7/x86_64/",
+        "https": true}, "id": "yum_distributor"}, {"repo_id": "epel-centos7", "_href":
+        "/pulp/api/v2/repositories/epel-centos7/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "5522d754c20cde468690403b"},
+        "config": {"http": true, "relative_url": "epel/centos/7/x86_64/", "https":
+        true}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"package_group":
+        209, "package_category": 4, "package_environment": 1, "erratum": 4384, "rpm":
+        20492, "yum_repo_metadata_file": 1}, "_ns": "repos", "importers": [{"scratchpad":
+        {"repomd_revision": 1467092507, "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/epel-centos7/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T14:00:07Z", "repo_id": "epel-centos7", "_id": {"$oid": "5522d754c20cde4686904039"},
+        "config": {"feed": "http://dl.fedoraproject.org/pub/epel/7/x86_64/"}, "id":
+        "yum_importer"}], "_id": {"$oid": "5522d754c20cde4686904038"}, "id": "epel-centos7",
+        "_href": "/pulp/api/v2/repositories/epel-centos7/"}, {"scratchpad": {}, "display_name":
+        "Oracle Client x86_64 Repo", "description": null, "distributors": [{"repo_id":
+        "ent-oracle-client-x86_64", "_href": "/pulp/api/v2/repositories/ent-oracle-client-x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2015-05-18T14:10:21Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5559f024c20cde7386d7323f"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "entertainment/oracle/client/x86_64", "https": true},
+        "id": "yum_distributor"}, {"repo_id": "ent-oracle-client-x86_64", "_href":
+        "/pulp/api/v2/repositories/ent-oracle-client-x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "5559f024c20cde7386d73240"},
+        "config": {"http": true, "relative_url": "entertainment/oracle/client/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 7}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-oracle-client-x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        null, "repo_id": "ent-oracle-client-x86_64", "_id": {"$oid": "5559f024c20cde7386d7323e"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "5559f023c20cde7386d7323d"},
+        "id": "ent-oracle-client-x86_64", "_href": "/pulp/api/v2/repositories/ent-oracle-client-x86_64/"},
+        {"scratchpad": {}, "display_name": "sensu-centos7-x86_64", "description":
+        null, "distributors": [{"repo_id": "sensu-centos7-x86_64", "_href": "/pulp/api/v2/repositories/sensu-centos7-x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2015-11-06T15:14:06Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "563cc2ffc20cde6bb123b7dc"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "sensu/yum/7/x86_64", "https": true}, "id": "yum_distributor"},
+        {"repo_id": "sensu-centos7-x86_64", "_href": "/pulp/api/v2/repositories/sensu-centos7-x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "563cc2ffc20cde6bb123b7dd"},
+        "config": {"http": true, "relative_url": "sensu/yum/7/x86_64", "https": true},
+        "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {}, "_ns":
+        "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/sensu-centos7-x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        null, "repo_id": "sensu-centos7-x86_64", "_id": {"$oid": "563cc2ffc20cde6bb123b7db"},
+        "config": {"feed": "http://repositories.sensuapp.org/yum/7/x86_64/"}, "id":
+        "yum_importer"}], "_id": {"$oid": "563cc2ffc20cde6bb123b7da"}, "id": "sensu-centos7-x86_64",
+        "_href": "/pulp/api/v2/repositories/sensu-centos7-x86_64/"}, {"scratchpad":
+        {}, "display_name": "ent-oracle-java", "description": "Contains Java packages
+        from Sun/Oracle", "distributors": [{"repo_id": "ent-oracle-java", "_href":
+        "/pulp/api/v2/repositories/ent-oracle-java/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2015-01-29T20:49:58Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5464de22c20cde09a35b2b80"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": true, "relative_url": "entertainment/java"}, "id": "yum_distributor"},
+        {"repo_id": "ent-oracle-java", "_href": "/pulp/api/v2/repositories/ent-oracle-java/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2015-01-29T20:51:31Z", "distributor_type_id":
+        "export_distributor", "auto_publish": false, "scratchpad": {}, "_id": {"$oid":
+        "5464de22c20cde09a35b2b81"}, "config": {"http": true, "relative_url": "entertainment/java",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 11}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-oracle-java/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:13Z", "repo_id": "ent-oracle-java", "_id": {"$oid": "5464de22c20cde09a35b2b7f"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "5464de22c20cde09a35b2b7e"},
+        "id": "ent-oracle-java", "_href": "/pulp/api/v2/repositories/ent-oracle-java/"},
+        {"scratchpad": {}, "display_name": "Entertainment CentOS 7 Repo", "description":
+        null, "distributors": [{"repo_id": "ent-centos7", "_href": "/pulp/api/v2/repositories/ent-centos7/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-02T15:12:15Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "54ad5e33c20cde03d1490d7f"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "entertainment/centos/7/x86_64", "https": true}, "id":
+        "yum_distributor"}, {"repo_id": "ent-centos7", "_href": "/pulp/api/v2/repositories/ent-centos7/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-05-12T20:09:47Z", "distributor_type_id":
+        "export_distributor", "auto_publish": false, "scratchpad": {}, "_id": {"$oid":
+        "54ad5e33c20cde03d1490d80"}, "config": {"http": true, "relative_url": "entertainment/centos/7/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": "2016-05-12T19:55:49Z", "content_unit_counts":
+        {"rpm": 31}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-centos7/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:20Z", "repo_id": "ent-centos7", "_id": {"$oid": "54ad5e33c20cde03d1490d7e"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "54ad5e33c20cde03d1490d7d"},
+        "id": "ent-centos7", "_href": "/pulp/api/v2/repositories/ent-centos7/"}, {"scratchpad":
+        {}, "display_name": "cloudflare-cent7", "description": null, "distributors":
+        [{"repo_id": "cloudflare-cent7", "_href": "/pulp/api/v2/repositories/cloudflare-cent7/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "yum_distributor",
+        "auto_publish": true, "scratchpad": {}, "_id": {"$oid": "55f85b72c20cde276f810628"},
+        "config": {"http": false, "https": true, "relative_url": "cloudflare/centos/7"},
+        "id": "yum_distributor"}, {"repo_id": "cloudflare-cent7", "_href": "/pulp/api/v2/repositories/cloudflare-cent7/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "55f85b72c20cde276f810629"},
+        "config": {"http": false, "relative_url": "cloudflare/centos/7", "https":
+        true}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {}, "_ns":
+        "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/cloudflare-cent7/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2015-09-15T17:59:30Z", "repo_id": "cloudflare-cent7", "_id": {"$oid": "55f85b72c20cde276f810627"},
+        "config": {"feed": "http://pkg.cloudflare.com/dists/el7/main/binary-x86_64"},
+        "id": "yum_importer"}], "_id": {"$oid": "55f85b72c20cde276f810626"}, "id":
+        "cloudflare-cent7", "_href": "/pulp/api/v2/repositories/cloudflare-cent7/"},
+        {"scratchpad": {}, "display_name": "ent-cent7-uat", "description": null, "distributors":
+        [{"repo_id": "ent-cent7-uat", "_href": "/pulp/api/v2/repositories/ent-cent7-uat/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-05-11T20:53:17Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "56e1f00ac20cde0b5e5d295d"}, "config": {"http": true, "relative_url": "entertainment/uat/centos/7/x86_64",
+        "https": true}, "id": "yum_distributor"}, {"repo_id": "ent-cent7-uat", "_href":
+        "/pulp/api/v2/repositories/ent-cent7-uat/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-05-11T20:53:18Z", "distributor_type_id":
+        "export_distributor", "auto_publish": false, "scratchpad": {}, "_id": {"$oid":
+        "56e1f00ac20cde0b5e5d295e"}, "config": {"http": true, "relative_url": "entertainment/uat/centos/7/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 7}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-cent7-uat/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        null, "repo_id": "ent-cent7-uat", "_id": {"$oid": "56e1f00ac20cde0b5e5d295c"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "56e1f009c20cde0b5e5d295b"},
+        "id": "ent-cent7-uat", "_href": "/pulp/api/v2/repositories/ent-cent7-uat/"},
+        {"scratchpad": {"checksum_type": "sha1"}, "display_name": null, "description":
+        null, "distributors": [{"repo_id": "sensu-el5-x86_64", "_href": "/pulp/api/v2/repositories/sensu-el5-x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:36:04Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "573a2dcac20cde77da66a8af"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": true, "relative_url": "sensu/el/5/x86_64"}, "id": "yum_distributor"},
+        {"repo_id": "sensu-el5-x86_64", "_href": "/pulp/api/v2/repositories/sensu-el5-x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "573a2dcac20cde77da66a8b0"},
+        "config": {"http": true, "https": true, "relative_url": "sensu/el/5/x86_64"},
+        "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 75},
+        "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision": null, "previous_skip_list":
+        []}, "_href": "/pulp/api/v2/repositories/sensu-el5-x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T14:36:00Z", "repo_id": "sensu-el5-x86_64", "_id": {"$oid": "573a2dcac20cde77da66a8ae"},
+        "config": {"feed": "http://repos.sensuapp.org/yum/el/5/x86_64/"}, "id": "yum_importer"}],
+        "_id": {"$oid": "573a2dcac20cde77da66a8ad"}, "id": "sensu-el5-x86_64", "_href":
+        "/pulp/api/v2/repositories/sensu-el5-x86_64/"}, {"scratchpad": {"checksum_type":
+        "sha256"}, "display_name": "ent-cent7-qa", "description": null, "distributors":
+        [{"repo_id": "ent-cent7-qa", "_href": "/pulp/api/v2/repositories/ent-cent7-qa/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:28:59Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "56b5142ec20cde71a353fc80"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "entertainment/qa/centos/7/x86_64", "https": true},
+        "id": "yum_distributor"}, {"repo_id": "ent-cent7-qa", "_href": "/pulp/api/v2/repositories/ent-cent7-qa/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:29:12Z", "distributor_type_id":
+        "export_distributor", "auto_publish": false, "scratchpad": {}, "_id": {"$oid":
+        "56b5142ec20cde71a353fc81"}, "config": {"http": true, "relative_url": "entertainment/qa/centos/7/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 23}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-cent7-qa/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-02-05T21:30:24Z", "repo_id": "ent-cent7-qa", "_id": {"$oid": "56b5142ec20cde71a353fc7f"},
+        "config": {"ssl_validation": false}, "id": "yum_importer"}], "_id": {"$oid":
+        "56b5142ec20cde71a353fc7e"}, "id": "ent-cent7-qa", "_href": "/pulp/api/v2/repositories/ent-cent7-qa/"},
+        {"scratchpad": {}, "display_name": "Keycloak EL7 x86_64 Repo", "description":
+        null, "distributors": [{"repo_id": "ent-keycloak-el7-x86_64", "_href": "/pulp/api/v2/repositories/ent-keycloak-el7-x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-02-23T18:21:31Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "56cb5520c20cde03d974d1b9"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "keycloak/el/7/x86_64", "https": true}, "id": "yum_distributor"},
+        {"repo_id": "ent-keycloak-el7-x86_64", "_href": "/pulp/api/v2/repositories/ent-keycloak-el7-x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "56cb5520c20cde03d974d1ba"},
+        "config": {"http": true, "relative_url": "keycloak/el/7/x86_64", "https":
+        true}, "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 3},
+        "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-keycloak-el7-x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        null, "repo_id": "ent-keycloak-el7-x86_64", "_id": {"$oid": "56cb5520c20cde03d974d1b8"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "56cb5520c20cde03d974d1b7"},
+        "id": "ent-keycloak-el7-x86_64", "_href": "/pulp/api/v2/repositories/ent-keycloak-el7-x86_64/"},
+        {"scratchpad": {}, "display_name": "APIMAN EL7 x86_64 Repo", "description":
+        null, "distributors": [{"repo_id": "ent-apiman-el7-x86_64", "_href": "/pulp/api/v2/repositories/ent-apiman-el7-x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-05-26T18:24:23Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "57110ee8c20cde6c72875aaa"}, "config": {"checksum_type": "sha256", "http":
+        true, "https": true, "relative_url": "apiman/el/7/x86_64/"}, "id": "yum_distributor"},
+        {"repo_id": "ent-apiman-el7-x86_64", "_href": "/pulp/api/v2/repositories/ent-apiman-el7-x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-05-26T18:25:21Z", "distributor_type_id":
+        "export_distributor", "auto_publish": false, "scratchpad": {}, "_id": {"$oid":
+        "57110ee8c20cde6c72875aab"}, "config": {"http": true, "relative_url": "apiman/el/7/x86_64/",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 17}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-apiman-el7-x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-04-15T16:26:49Z", "repo_id": "ent-apiman-el7-x86_64", "_id": {"$oid":
+        "57110ee8c20cde6c72875aa9"}, "config": {}, "id": "yum_importer"}], "_id":
+        {"$oid": "57110ee8c20cde6c72875aa8"}, "id": "ent-apiman-el7-x86_64", "_href":
+        "/pulp/api/v2/repositories/ent-apiman-el7-x86_64/"}, {"scratchpad": {}, "display_name":
+        "ent-centos6", "description": null, "distributors": [{"repo_id": "ent-centos6",
+        "_href": "/pulp/api/v2/repositories/ent-centos6/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-05-18T02:23:23Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "540f68e2c20cde076b1b71b6"}, "config": {"checksum_type": "sha256", "http":
+        true, "relative_url": "entertainment/centos/6/x86_64", "https": true}, "id":
+        "yum_distributor"}, {"repo_id": "ent-centos6", "_href": "/pulp/api/v2/repositories/ent-centos6/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "540f68e2c20cde076b1b71b7"},
+        "config": {"http": true, "relative_url": "entertainment/centos/6/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {"rpm": 29}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-centos6/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:30Z", "repo_id": "ent-centos6", "_id": {"$oid": "540f68e2c20cde076b1b71b5"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "540f68e2c20cde076b1b71b4"},
+        "id": "ent-centos6", "_href": "/pulp/api/v2/repositories/ent-centos6/"}, {"scratchpad":
+        {"checksum_type": "sha256"}, "display_name": "CentOS 6 Mirror", "description":
+        "Mirrored from Nexcess.net", "distributors": [{"repo_id": "centos6", "_href":
+        "/pulp/api/v2/repositories/centos6/distributors/yum_distributor/", "_ns":
+        "repo_distributors", "last_publish": "2016-06-29T13:05:33Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "5411f689c20cde0a3cc4a4a8"}, "config": {"checksum_type": "sha256", "http":
+        true, "https": true, "relative_url": "centos/6/os/x86_64/"}, "id": "yum_distributor"},
+        {"repo_id": "centos6", "_href": "/pulp/api/v2/repositories/centos6/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "5411f689c20cde0a3cc4a4a9"},
+        "config": {"http": true, "relative_url": "centos/6/os/x86_64/", "https": true},
+        "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"package_group":
+        214, "distribution": 1, "package_category": 14, "rpm": 12142}, "_ns": "repos",
+        "importers": [{"scratchpad": {"repomd_revision": 1463896289, "previous_skip_list":
+        []}, "_href": "/pulp/api/v2/repositories/centos6/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T13:00:20Z", "repo_id": "centos6", "_id": {"$oid": "5411f689c20cde0a3cc4a4a7"},
+        "config": {"feed": "http://mirror.nexcess.net/CentOS/6/os/x86_64/", "max_downloads":
+        50, "validate": true}, "id": "yum_importer"}], "_id": {"$oid": "5411f689c20cde0a3cc4a4a6"},
+        "id": "centos6", "_href": "/pulp/api/v2/repositories/centos6/"}, {"scratchpad":
+        {"checksum_type": "sha1"}, "display_name": "sensu-el6-x86_64", "description":
+        null, "distributors": [{"repo_id": "sensu-el6-x86_64", "_href": "/pulp/api/v2/repositories/sensu-el6-x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:00:14Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "552565a7c20cde4687a7b8b3"}, "config": {"checksum_type": "sha1", "http": true,
+        "https": true, "relative_url": "sensu/el/6/x86_64"}, "id": "yum_distributor"},
+        {"repo_id": "sensu-el6-x86_64", "_href": "/pulp/api/v2/repositories/sensu-el6-x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "552565a7c20cde4687a7b8b4"},
+        "config": {"http": true, "relative_url": "sensu/el/6/x86_64", "https": true},
+        "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 107},
+        "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision": 1466799789,
+        "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/sensu-el6-x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T14:00:05Z", "repo_id": "sensu-el6-x86_64", "_id": {"$oid": "552565a7c20cde4687a7b8b2"},
+        "config": {"feed": "http://repositories.sensuapp.org/yum/6/x86_64"}, "id":
+        "yum_importer"}], "_id": {"$oid": "552565a7c20cde4687a7b8b1"}, "id": "sensu-el6-x86_64",
+        "_href": "/pulp/api/v2/repositories/sensu-el6-x86_64/"}, {"scratchpad": {"checksum_type":
+        "sha1"}, "display_name": "sensu-el7-x86_64", "description": null, "distributors":
+        [{"repo_id": "sensu-el7-x86_64", "_href": "/pulp/api/v2/repositories/sensu-el7-x86_64/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:30:08Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "563cc391c20cde6bafe50b14"}, "config": {"checksum_type": "sha1", "http": true,
+        "relative_url": "sensu/el/7/x86_64", "https": true}, "id": "yum_distributor"},
+        {"repo_id": "sensu-el7-x86_64", "_href": "/pulp/api/v2/repositories/sensu-el7-x86_64/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "export_distributor",
+        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "563cc391c20cde6bafe50b15"},
+        "config": {"http": true, "relative_url": "sensu/el/7/x86_64", "https": true},
+        "id": "export_distributor"}], "last_unit_added": null, "notes": {"_repo-type":
+        "rpm-repo"}, "last_unit_removed": null, "content_unit_counts": {"rpm": 36},
+        "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision": 1466799789,
+        "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/sensu-el7-x86_64/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        "2016-06-29T14:30:05Z", "repo_id": "sensu-el7-x86_64", "_id": {"$oid": "563cc391c20cde6bafe50b13"},
+        "config": {"feed": "http://repositories.sensuapp.org/yum/7/x86_64"}, "id":
+        "yum_importer"}], "_id": {"$oid": "563cc391c20cde6bafe50b12"}, "id": "sensu-el7-x86_64",
+        "_href": "/pulp/api/v2/repositories/sensu-el7-x86_64/"}, {"scratchpad": {},
+        "display_name": "ent-cent7-dev", "description": null, "distributors": [{"repo_id":
+        "ent-cent7-dev", "_href": "/pulp/api/v2/repositories/ent-cent7-dev/distributors/yum_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-27T21:17:03Z", "distributor_type_id":
+        "yum_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
+        "56b50adac20cde71a43ebeaa"}, "config": {"checksum_type": "sha256", "http":
+        true, "https": true, "relative_url": "entertainment/dev/centos/7/x86_64"},
+        "id": "yum_distributor"}, {"repo_id": "ent-cent7-dev", "_href": "/pulp/api/v2/repositories/ent-cent7-dev/distributors/export_distributor/",
+        "_ns": "repo_distributors", "last_publish": "2016-06-27T21:18:18Z", "distributor_type_id":
+        "export_distributor", "auto_publish": false, "scratchpad": {}, "_id": {"$oid":
+        "56b50adac20cde71a43ebeab"}, "config": {"http": true, "relative_url": "entertainment/dev/centos/7/x86_64",
+        "https": true}, "id": "export_distributor"}], "last_unit_added": null, "notes":
+        {"_repo-type": "rpm-repo"}, "last_unit_removed": "2016-05-09T19:10:43Z", "content_unit_counts":
+        {"rpm": 64}, "_ns": "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/ent-cent7-dev/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
+        null, "repo_id": "ent-cent7-dev", "_id": {"$oid": "56b50adac20cde71a43ebea9"},
+        "config": {}, "id": "yum_importer"}], "_id": {"$oid": "56b50adac20cde71a43ebea8"},
+        "id": "ent-cent7-dev", "_href": "/pulp/api/v2/repositories/ent-cent7-dev/"}]'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:43:18 GMT
+recorded_with: VCR 3.0.3

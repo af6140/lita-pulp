@@ -158,7 +158,7 @@ module Lita
           }
         },
         help: {
-          t("help.deletw_newer_rpm_key") => t("help.delet_newer_rpm_value")
+          t("help.delete_newer_rpm_key") => t("help.delete_newer_rpm_value")
         }
       )
 
@@ -185,7 +185,7 @@ module Lita
           }
         },
         help: {
-          t("help.deletw_newer_rpm_key") => t("help.delet_newer_rpm_value")
+          t("help.delete_newer_rpm_key") => t("help.delete_newer_rpm_value")
         }
       )
 
@@ -228,7 +228,7 @@ module Lita
         begin
           search_rpm(name, repo)
         rescue StandardError => e
-          response.reply e.mesage
+          response.reply e.message
         end
 
       end
@@ -255,7 +255,6 @@ module Lita
       end
 
       def copy_rpm(response)
-         #puts "response.extensions=#{response.extensions}"
          args = response.extensions[:kwargs]
          from = args[:from]
          to = args[:to]
@@ -265,9 +264,8 @@ module Lita
          arch = args[:arch]
          delete_newer=args[:delete_newer]||false
          publish=args[:publish]||false
-
          begin
-           if from.nil? || to.nil? || relase.nil? ||name.nil? || version.nil? || arch.nil?
+           if from.nil? || to.nil? || release.nil? ||name.nil? || version.nil? || arch.nil?
              raise  "Exception: Missing required paramenter"
            end
            copy_rpm_between_repo!(from, to, name, version, release, arch, delete_newer, publish)
@@ -286,7 +284,6 @@ module Lita
         version = args[:version]
         delete_newer=args[:delete_newer]||false
         publish=args[:publish]||false
-        puts "delete_newer=#{delete_newer} publish=#{publish}"
         begin
           if from.nil? || to.nil? || author.nil? || name.nil? || version.nil?
             raise "Exception: missing required parameters"

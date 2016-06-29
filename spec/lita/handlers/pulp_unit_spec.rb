@@ -1,6 +1,8 @@
 require "spec_helper"
 
-describe Lita::Handlers::Pulp, lita_handler: true do
+vcr_options = { :record => :new_episodes }
+
+describe Lita::Handlers::Pulp, lita_handler: true , :vcr => vcr_options do
 
   before do
     registry.config.handlers.pulp.url="https://pulp.co.epi.web"
@@ -16,6 +18,7 @@ describe Lita::Handlers::Pulp, lita_handler: true do
     is_expected.to route_command('pulp puppet search cosmos').to(:puppet_search)
     is_expected.to route_command('pulp puppet search cosmos in dev').to(:puppet_search)
     is_expected.to route_command('pulp puppet copy -s forge_dev --to forge_qa --author entertainment --name cicd_test --version 0.1.33-pre100079-rev159b6f9 -d -p').to(:copy_puppet)
+    is_expected.to route_command('pulp rpm copy -s ent-cent7-dev --to ent-cent7-qa --name cosmos-web --version 1.0.0_SNAPSHOT --release b20160627.211338.63 --arch noarch').to(:copy_rpm)
   end
 
   describe '#rpm_search' do
@@ -59,6 +62,18 @@ describe Lita::Handlers::Pulp, lita_handler: true do
     end
     it 'copy puppet module delete new and publish' do
       send_command("pulp puppet copy -s forge_dev --to forge_qa --author entertainment --name cicd_test --version 0.1.33-pre100079-rev159b6f9 -d -p")
+    end
+  end
+
+  describe '#copy_rpm_between_repo' do
+    it 'copy rpm package should fail with missing errors' do
+      send_command("pulp rpm copy -s ent-cent7-dev --to ent-cent7-qa --name cosmos-web --version 1.0.0_SNAPSHOT --release b20160627.211338.63")
+    end
+    it 'copy rpm package' do
+      send_command("pulp rpm copy -s ent-cent7-dev --to ent-cent7-qa --name cosmos-web --version 1.0.0_SNAPSHOT --release b20160627.211338.63 --arch noarch")
+    end
+    it 'copy rpm package delete new and publish' do
+      send_command("pulp rpm copy -s ent-cent7-dev --to ent-cent7-qa --name cosmos-web --version 1.0.0_SNAPSHOT --release b20160627.211338.63 --arch noarch -d -p")
     end
   end
 end

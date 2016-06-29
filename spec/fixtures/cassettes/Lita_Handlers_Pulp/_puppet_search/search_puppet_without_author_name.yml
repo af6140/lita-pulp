@@ -1,0 +1,134 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/content/units/puppet_module/search/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"fields":["author","name","version"],"filters":{"$and":[{"name":{"$regex":"cicd_test"}},{"author":"entertainment"}]},"sort":[["author","descending"],["name","descending"],["version","descending"]]},"include_repos":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '232'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:43:58 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '8329'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '[{"repository_memberships": [], "version": "0.1.33-pre78-rev1264a10",
+        "_href": "/pulp/api/v2/content/units/puppet_module/bef04f59-fc0c-4475-b26b-7b5b082e4ba8/",
+        "author": "entertainment", "_id": "bef04f59-fc0c-4475-b26b-7b5b082e4ba8",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre76-rev8c3bcb0", "_href": "/pulp/api/v2/content/units/puppet_module/0006c3c0-bda8-49d7-ac2e-efbdca662454/",
+        "author": "entertainment", "_id": "0006c3c0-bda8-49d7-ac2e-efbdca662454",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_build"],
+        "version": "0.1.33-pre75-rev7f3e1e5", "_href": "/pulp/api/v2/content/units/puppet_module/fc350a23-9f99-4b78-b611-df238faf7c4d/",
+        "author": "entertainment", "_id": "fc350a23-9f99-4b78-b611-df238faf7c4d",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre72-rev7f3e1e5", "_href": "/pulp/api/v2/content/units/puppet_module/7ab03c96-e7a9-4b93-a590-83036dfc8ffb/",
+        "author": "entertainment", "_id": "7ab03c96-e7a9-4b93-a590-83036dfc8ffb",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre71-rev7f3e1e5", "_href": "/pulp/api/v2/content/units/puppet_module/04a87bd8-04cb-4a6f-a0fe-21b185449e51/",
+        "author": "entertainment", "_id": "04a87bd8-04cb-4a6f-a0fe-21b185449e51",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre70-rev7f3e1e5", "_href": "/pulp/api/v2/content/units/puppet_module/7db4a2c9-b9a4-47d8-81ea-78555becf9e9/",
+        "author": "entertainment", "_id": "7db4a2c9-b9a4-47d8-81ea-78555becf9e9",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre69-revc3e43fb", "_href": "/pulp/api/v2/content/units/puppet_module/fbfdd053-bc16-411b-8f02-25ff6b2c0f81/",
+        "author": "entertainment", "_id": "fbfdd053-bc16-411b-8f02-25ff6b2c0f81",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre68-revc3e43fb", "_href": "/pulp/api/v2/content/units/puppet_module/d025111b-b3e3-4e18-9157-0080dce69419/",
+        "author": "entertainment", "_id": "d025111b-b3e3-4e18-9157-0080dce69419",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre64-revc3e43fb", "_href": "/pulp/api/v2/content/units/puppet_module/82898816-3e68-4c2a-869a-fbaee96b64ac/",
+        "author": "entertainment", "_id": "82898816-3e68-4c2a-869a-fbaee96b64ac",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre62-rev514c325", "_href": "/pulp/api/v2/content/units/puppet_module/37be046f-de8f-4ea6-a146-918d4441e11d/",
+        "author": "entertainment", "_id": "37be046f-de8f-4ea6-a146-918d4441e11d",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre61-rev514c325", "_href": "/pulp/api/v2/content/units/puppet_module/97e2a88b-2210-43c2-b09e-af8abc62aeb7/",
+        "author": "entertainment", "_id": "97e2a88b-2210-43c2-b09e-af8abc62aeb7",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre59-rev514c325", "_href": "/pulp/api/v2/content/units/puppet_module/30b8ab33-fb1d-48cc-a60b-3029b444038c/",
+        "author": "entertainment", "_id": "30b8ab33-fb1d-48cc-a60b-3029b444038c",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre58-rev514c325", "_href": "/pulp/api/v2/content/units/puppet_module/675d1f87-933d-4647-a26c-6aa4f1ada12c/",
+        "author": "entertainment", "_id": "675d1f87-933d-4647-a26c-6aa4f1ada12c",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre56-rev039ebec", "_href": "/pulp/api/v2/content/units/puppet_module/c5de39f6-32d3-4006-9d2e-398ed0572847/",
+        "author": "entertainment", "_id": "c5de39f6-32d3-4006-9d2e-398ed0572847",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre32-revc3e43fb", "_href": "/pulp/api/v2/content/units/puppet_module/8a842504-8e5a-4652-b3cd-add2b19d553a/",
+        "author": "entertainment", "_id": "8a842504-8e5a-4652-b3cd-add2b19d553a",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre23-rev039ebec", "_href": "/pulp/api/v2/content/units/puppet_module/6d186edf-cca0-4626-922f-f2a915429ac8/",
+        "author": "entertainment", "_id": "6d186edf-cca0-4626-922f-f2a915429ac8",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre22-rev039ebec", "_href": "/pulp/api/v2/content/units/puppet_module/66c2cbf9-e743-4c8a-a567-9c68d504525b/",
+        "author": "entertainment", "_id": "66c2cbf9-e743-4c8a-a567-9c68d504525b",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre21-rev039ebec", "_href": "/pulp/api/v2/content/units/puppet_module/3106fc74-ac14-471c-8e29-fc22ccf6f1b2/",
+        "author": "entertainment", "_id": "3106fc74-ac14-471c-8e29-fc22ccf6f1b2",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre19-rev50927a2", "_href": "/pulp/api/v2/content/units/puppet_module/fb0abb5e-14c5-47e4-b93b-7dd4dfc96e15/",
+        "author": "entertainment", "_id": "fb0abb5e-14c5-47e4-b93b-7dd4dfc96e15",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre18-rev50927a2", "_href": "/pulp/api/v2/content/units/puppet_module/a0b8d75a-3716-4d34-9109-a3953222e014/",
+        "author": "entertainment", "_id": "a0b8d75a-3716-4d34-9109-a3953222e014",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre174-rev7f3e1e5", "_href": "/pulp/api/v2/content/units/puppet_module/cb6adf75-b369-4387-862e-aff941e83e0b/",
+        "author": "entertainment", "_id": "cb6adf75-b369-4387-862e-aff941e83e0b",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": [], "version":
+        "0.1.33-pre17-rev50927a2", "_href": "/pulp/api/v2/content/units/puppet_module/fdad263d-2cc5-472c-b9dc-9ad38efd1ee6/",
+        "author": "entertainment", "_id": "fdad263d-2cc5-472c-b9dc-9ad38efd1ee6",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_build",
+        "forge_dev"], "version": "0.1.33-pre100080-rev159b6f9", "_href": "/pulp/api/v2/content/units/puppet_module/a0942d31-ed23-41d3-a890-aa9249df48b5/",
+        "author": "entertainment", "_id": "a0942d31-ed23-41d3-a890-aa9249df48b5",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_qa",
+        "forge_build", "forge_dev"], "version": "0.1.33-pre100079-rev159b6f9", "_href":
+        "/pulp/api/v2/content/units/puppet_module/c3d5f09d-88a5-472e-880b-f4dbb4b5b7c8/",
+        "author": "entertainment", "_id": "c3d5f09d-88a5-472e-880b-f4dbb4b5b7c8",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_build",
+        "forge_dev"], "version": "0.1.33-pre100078-rev7f3e1e5", "_href": "/pulp/api/v2/content/units/puppet_module/c5083258-3265-4571-8e73-85ac89f466f2/",
+        "author": "entertainment", "_id": "c5083258-3265-4571-8e73-85ac89f466f2",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_build",
+        "forge_dev"], "version": "0.1.33-pre100077-rev7f3e1e5", "_href": "/pulp/api/v2/content/units/puppet_module/2627f6ad-b507-48d6-bc94-91291187a8e3/",
+        "author": "entertainment", "_id": "2627f6ad-b507-48d6-bc94-91291187a8e3",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_qa",
+        "forge_build", "forge_dev"], "version": "0.1.33-pre100076-rev7f3e1e5", "_href":
+        "/pulp/api/v2/content/units/puppet_module/e40d66b1-7750-48a5-9c3a-cb9cfcc4cebc/",
+        "author": "entertainment", "_id": "e40d66b1-7750-48a5-9c3a-cb9cfcc4cebc",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_dev"],
+        "version": "0.1.32", "_href": "/pulp/api/v2/content/units/puppet_module/5d3ab80e-c18f-46fd-a85f-51f1a8a55054/",
+        "author": "entertainment", "_id": "5d3ab80e-c18f-46fd-a85f-51f1a8a55054",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_uat"],
+        "version": "0.1.28", "_href": "/pulp/api/v2/content/units/puppet_module/a631384b-b3ce-4687-b167-881662fb6e71/",
+        "author": "entertainment", "_id": "a631384b-b3ce-4687-b167-881662fb6e71",
+        "children": {}, "name": "cicd_test"}, {"repository_memberships": ["forge_uat"],
+        "version": "0.1.0", "_href": "/pulp/api/v2/content/units/puppet_module/a78649f3-926a-48f5-a7a0-ac54a841ce12/",
+        "author": "entertainment", "_id": "a78649f3-926a-48f5-a7a0-ac54a841ce12",
+        "children": {}, "name": "cicd_test"}]'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:09 GMT
+recorded_with: VCR 3.0.3

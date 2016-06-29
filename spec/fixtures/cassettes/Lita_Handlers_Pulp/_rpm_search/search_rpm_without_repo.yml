@@ -1,0 +1,152 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/content/units/rpm/search/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"fields":["name","version","release","epoch","checksum"],"filters":{"name":{"$regex":"cosmos"}},"sort":[["epoch","descending"],["version","descending"],["release","descending"]]},"include_repos":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '213'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Jun 2016 14:43:56 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '10671'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '[{"repository_memberships": ["ent-cent7-qa", "ent-cent7-dev"], "name":
+        "cosmos-web", "checksum": "8c0b75af5ec12395ff2b7700322aa9e9287fc44ca7f474e5e6edc6bc632df2e5",
+        "epoch": "0", "version": "1.0.0_SNAPSHOT", "release": "b20160627.211338.63",
+        "_id": "c3dcddf1-3d2f-4387-b06d-0f13076c2e08", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/c3dcddf1-3d2f-4387-b06d-0f13076c2e08/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "73f8d21e0192945f923e692e3f900db11a99ee84afb1549b1262f05dc2279b81", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160623.151418.62", "_id":
+        "f6767690-ede5-4559-af25-5d870c768bed", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/f6767690-ede5-4559-af25-5d870c768bed/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "8e63ece6b5cfc6a75c5218f952b4782984ef27efa20c7bc1565f08ed8a7e45e4", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160621.152704.61", "_id":
+        "9a7ebaac-a355-4aa5-b2a0-9d6cd0aa02a1", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/9a7ebaac-a355-4aa5-b2a0-9d6cd0aa02a1/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "d266fb7362773ba11ccbdf9f79319ed2fdf582154c6e2f8e24ef20424904008f", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160620.210654.60", "_id":
+        "0cc928ef-c620-40a0-b041-710cdcfd755b", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/0cc928ef-c620-40a0-b041-710cdcfd755b/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "2b3f812bff3841cff11ed5c831b8ccbacce2bcedc28dc7ba8e5d0aed7fa43ad0", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160620.190123.59", "_id":
+        "631ce1de-f252-43b5-a6ee-92af46432f49", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/631ce1de-f252-43b5-a6ee-92af46432f49/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "3dd4eef1765372e1d7a61acb101fa31c6c73efb16def4132c47b43c614d5f411", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160616.211020.58", "_id":
+        "f7624c3d-a987-46de-aa9b-6ae5e0e01422", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/f7624c3d-a987-46de-aa9b-6ae5e0e01422/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "a071fdf98fe5e63f04f0b35156134b5f930a022041eed37a1d5f59f2ef38902c", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160616.191517.57", "_id":
+        "21bf34f3-32df-4618-9538-0b31aa1b6bb1", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/21bf34f3-32df-4618-9538-0b31aa1b6bb1/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "c8cf31ff286995d2b2c36851fbf00ed6ab5cdaad4bf216282e192a52892d6b61", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160616.155408.56", "_id":
+        "b13c8831-65bb-4c9a-9882-12f2c419d33d", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/b13c8831-65bb-4c9a-9882-12f2c419d33d/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "acd1c76469a3c8d897538fc0a42695d3d5fc592f0a5d96e98aeb71977a87c1e5", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160616.122523.55", "_id":
+        "a86ab523-d8a3-42c3-ab86-b0e4e28219cc", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/a86ab523-d8a3-42c3-ab86-b0e4e28219cc/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "b4c59def1e247224c032d39fca9e875798a8b40493b1114a50dfa9bf7efd70db", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160616.120215.54", "_id":
+        "63c849e8-1bf0-442e-a14b-7eb23d3e7bbb", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/63c849e8-1bf0-442e-a14b-7eb23d3e7bbb/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "6e1d0577e02ec10bfc0bab585af2f85445b9159c31e7726c1988546b10114fbd", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160614.222549.53", "_id":
+        "fa294815-2bca-4fba-957e-6317de984736", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/fa294815-2bca-4fba-957e-6317de984736/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "34b6e3205a70441c76bc66130b70d18cf512cffdc24027c0b8b94fe7ef153746", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160609.150824.52", "_id":
+        "4e909ab9-9a92-4fe3-a2b3-85a2bb56c7fc", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/4e909ab9-9a92-4fe3-a2b3-85a2bb56c7fc/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "eac1d6e95b05410835657241077214a11db580e5bc13458b13d09f6deaaa103d", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160606.194020.51", "_id":
+        "0f111a86-eae1-45dd-aa6e-a8f86a88fe3e", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/0f111a86-eae1-45dd-aa6e-a8f86a88fe3e/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "734ac412e5eda9475e0149a7807a4c461d14f9c3a6d4f9e5d5d9bd922f6f398c", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160523.155042.50", "_id":
+        "76eaaec4-21a9-4597-ac56-b8d4b79598aa", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/76eaaec4-21a9-4597-ac56-b8d4b79598aa/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "51c9cb76e90f3d4fb063d9a77a676f6ce07ab7a4196f8a8cf88613f9eb541366", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160519.180243.49", "_id":
+        "536dd4ee-0f33-4e1a-9336-bce2a7fd0e69", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/536dd4ee-0f33-4e1a-9336-bce2a7fd0e69/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "284d44bae53b9a553d206dba501e9390ffebb14874331d5e11037d7110cefc11", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160518.143149.45", "_id":
+        "c0340f24-0f2a-4430-9433-44e62bb2484c", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/c0340f24-0f2a-4430-9433-44e62bb2484c/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "962acd4fdfed293e5476f24dcb371c6bb8f87df48a3b4ef5753854f9b591c3d0", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160518.142908.44", "_id":
+        "67e32b5d-6711-4245-aa1c-28d679871f18", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/67e32b5d-6711-4245-aa1c-28d679871f18/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "58ed5ceaba8ce81a2b7fa27eaa0ccb69db84cac930b3f376f23397a3a47d69a9", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160518.142607.43", "_id":
+        "3f816e8e-4807-4c7a-ba7f-7c037aec20ca", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/3f816e8e-4807-4c7a-ba7f-7c037aec20ca/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "44f22f7587692e73da698e658ad3b369e7deb98d3d555898a5c488362319d3dc", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160518.142225.42", "_id":
+        "d7faf0c1-9d34-46dd-8643-89b50818f8f7", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/d7faf0c1-9d34-46dd-8643-89b50818f8f7/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "eaa26d72513ea8a2b89dff2f5de90e2937b6f0265c09d16fa20cbe6607c26c51", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160516.215104.41", "_id":
+        "4fd000fd-8184-4a76-a2b0-233871b4a91f", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/4fd000fd-8184-4a76-a2b0-233871b4a91f/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "57c2f4dcd2fc2cf5b6b9f09b36193e5428e2b721dbc3ac79b326bcb07d8980e2", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160512.213034.40", "_id":
+        "a21512fe-b642-4c9c-bfb3-08283309dc44", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/a21512fe-b642-4c9c-bfb3-08283309dc44/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "5373e8dd2f712c63580d406277a75e29afcfa8f3ef21cdb587e9768440c8dbd7", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160512.142820.39", "_id":
+        "a939f53d-520c-4155-878e-1dade5028ddc", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/a939f53d-520c-4155-878e-1dade5028ddc/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "d0c45de8f7197290b0c3a49e73bdf2c07a531075832bdb267bab9d3f4225063c", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160510.184328.37", "_id":
+        "45be0e53-039c-4709-a41f-1bc2b8f14444", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/45be0e53-039c-4709-a41f-1bc2b8f14444/"},
+        {"repository_memberships": ["ent-cent7-dev"], "name": "cosmos-web", "checksum":
+        "97a8bf52ed37320aec4ddc064efc96f1d6ef85a2632a5fad358a4d6e35098eb4", "epoch":
+        "0", "version": "1.0.0_SNAPSHOT", "release": "b20160506.213118.36", "_id":
+        "e5e9e688-4839-4f06-a62d-551d35fc404b", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/e5e9e688-4839-4f06-a62d-551d35fc404b/"},
+        {"repository_memberships": [], "name": "cosmos-web", "checksum": "8adee7c93e4ab1cf51bae44e8aea2bf60a41af5b45a8dad5cc0af3d308c260dc",
+        "epoch": "0", "version": "1.0.0_SNAPSHOT", "release": "b20160506.211252.34",
+        "_id": "9a956a24-92d3-4433-9dca-2bb8a0661b4b", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/9a956a24-92d3-4433-9dca-2bb8a0661b4b/"},
+        {"repository_memberships": [], "name": "cosmos-web", "checksum": "875669ec02058a780a4e5158950eb073e0ff5a79f332a2ac9bf5f5febb13144d",
+        "epoch": "0", "version": "1.0.0_SNAPSHOT", "release": "b20160503.211005.29",
+        "_id": "c958fcb8-db2c-4599-a667-bfaa3e576043", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/c958fcb8-db2c-4599-a667-bfaa3e576043/"},
+        {"repository_memberships": [], "name": "cosmos-web", "checksum": "84cd4e24d3539d6d9420678ffa6761c84f4fd3d85cb73bffb1fe3ca6d66317e0",
+        "epoch": "0", "version": "1.0.0_SNAPSHOT", "release": "b20160421.145308.28",
+        "_id": "580b409c-4c7a-4820-84e3-04aa9f493e0f", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/580b409c-4c7a-4820-84e3-04aa9f493e0f/"},
+        {"repository_memberships": [], "name": "cosmos-web", "checksum": "ede362149a45cbf9713710f3631411bc7bee60fc75b4090f7e0a6f26a126604e",
+        "epoch": "0", "version": "1.0.0_SNAPSHOT", "release": "b20160414.173925.27",
+        "_id": "c96e836c-57f4-4c4a-be23-70375bed4119", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/c96e836c-57f4-4c4a-be23-70375bed4119/"},
+        {"repository_memberships": [], "name": "cosmos-web", "checksum": "76b818acdbab231510892144d1f27d2ab775b8ba10d3ec249afdbec3fe0fb367",
+        "epoch": "0", "version": "1.0.0_SNAPSHOT", "release": "b20160331.072130.26",
+        "_id": "104d49a9-fdda-40f3-9c85-9bac91294738", "children": {}, "_href": "/pulp/api/v2/content/units/rpm/104d49a9-fdda-40f3-9c85-9bac91294738/"}]'
+    http_version: 
+  recorded_at: Wed, 29 Jun 2016 14:44:07 GMT
+recorded_with: VCR 3.0.3

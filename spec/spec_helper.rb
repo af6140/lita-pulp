@@ -6,6 +6,16 @@ require "lita/rspec"
 # was generated with Lita 4, the compatibility mode should be left disabled.
 Lita.version_3_compatibility_mode = false
 
+require 'vcr'
+
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/cassettes'
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+end
+
+
 RSpec.configure do |config|
   config.before do
     registry.register_handler(Lita::Handlers::Pulp)
@@ -13,6 +23,6 @@ RSpec.configure do |config|
   end
 end
 
-def grab_request(result)
-  allow(Runcible::Instance).to receive(:new) { result }
-end
+# def grab_request(result)
+#   allow(Runcible::Instance).to receive(:new) { result }
+# end
