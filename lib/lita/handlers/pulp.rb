@@ -47,7 +47,7 @@ module Lita
        :rpm_search,
        command: true,
        help: {
-         t('help.rmp_search_key') => t('help.rpm_search_value')
+         t('help.rpm_search_key') => t('help.rpm_search_value')
        }
       )
 
@@ -185,7 +185,7 @@ module Lita
           }
         },
         help: {
-          t("help.delete_newer_rpm_key") => t("help.delete_newer_rpm_value")
+          t("help.delete_newer_puppet_key") => t("help.delete_newer_puppet_value")
         }
       )
 
