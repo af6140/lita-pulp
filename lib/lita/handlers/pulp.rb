@@ -190,13 +190,22 @@ module Lita
         }
       )
 
+      route(
+        /^pulp\s+show\s+repo\s+(\S+)$/,
+        :show_repo,
+        command: true,
+        help: {
+          t('help.show_repo_key') => t('help.show_repo_value')
+        }
+      )
+
       def rpm_repos(response)
         begin
           result=list_repo(REPO_TYPE_RPM)
           #puts "********result"
           s = StringIO.new
           result.each do |r|
-            s << "["<< r[:id] << "] : " << r[:name] << "," << r[:description] << "\n"
+            s << "["<< r[:id] << "] : " << r[:name] << ", " << r[:description] << "\n"
           end
           response.reply s.string
         rescue Exception => e
@@ -210,7 +219,7 @@ module Lita
             #response.reply result.to_json
             s = StringIO.new
             result.each do |r|
-              s << "["<< r[:id] << "] : " << r[:name] << "," << r[:description] << "\n"
+              s << "["<< r[:id] << "] : " << r[:name] << ", " << r[:description] << "\n"
             end
             response.reply s.string
           rescue Exception => e
@@ -218,6 +227,15 @@ module Lita
           end
       end
 
+      def show_repo(response)
+        repo_id = response.matches[0][0]
+        begin
+          repo = get_repo(repo_id)
+          response.reply JSON.pretty_generate(repo)
+        rescue Exception => e
+          response.reply e.message
+        end
+      end
       def publish_repo(response)
           repo_id = response.matchs[0][0]
           if repo_id
@@ -249,7 +267,7 @@ module Lita
           result=search_rpm(name, repo)
           s = StringIO.new
           result.each do |r|
-            s << "["<< r[:name] << "] : " << r[:version] << "," << r[:release] << "," << r[:repos] <<"\n"
+            s << "["<< r[:name] << "] : " << r[:version] << ", " << r[:release] << ", " << r[:repos] <<"\n"
           end
           response.reply s.string
         rescue StandardError => e
@@ -275,7 +293,7 @@ module Lita
           result=search_puppet(author, name, repo)
           s = StringIO.new
           result.each do |r|
-            s << "["<< r[:author] << "/" << r[:name]<< "] :" <<r[:version] << "," << r[:repos] <<"\n"
+            s << "["<< r[:author] << "/" << r[:name]<< "] : " <<r[:version] << ", " << r[:repos] <<"\n"
           end
           response.reply s.string
         rescue StandardError => e

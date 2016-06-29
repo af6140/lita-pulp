@@ -61,29 +61,20 @@ module PulpHelper
     #    config :
     # importers:
     #   importer_type_id: "puppet_importer"
-    def list_repo_details(type)
-      criteria = {
-        "filters" => {
-          "notes._repo-type" => {
-            "$in" => [type]
-          }
-        }
-      }
-      #puts "criteria:#{criteria}"
-      response=client.resources.repository.search(criteria, {"details" => true})
+    def get_repo(repo_id)
+      response=client.extensions.repository.retrieve_with_details(repo_id)
       code=response.code
       body=response.body
-      result=[]
       case code
       when 200
-        repos=JSON.parse(body.to_json)
+        repo=JSON.parse(body.to_json)
+        type = repo["notes"]["_repo-type"]
         #puts repos
-        repos.each do |repo|
-          case type
+        repo_data=nil
+        case type
           when REPO_TYPE_RPM
             yum_distributor = repo["distributors"].select{ |d| d["distributor_type_id"] == 'yum_distributor'}[0]
             yum_importer = repo["distributors"].select{ |d| d["distributor_type_id"] == 'yum_importer'}[0]
-
             distributor = nil
             if  yum_distributor
               distributor = {
@@ -106,19 +97,20 @@ module PulpHelper
               :description => repo["description"],
               :content_unit_counts => repo["content_unit_counts"],
               :type => REPO_TYPE_RPM,
+              :last_unit_removed => repo["last_unit_removed"],
+              :last_unit_added => repo["last_unit_added"],
               :distributor => distributor,
               :importer => importer,
             }
             #puts repos
-            result << repo_data
           when REPO_TYPE_PUPPET
             puppet_distributor = repo["distributors"].select{ |d| d["distributor_type_id"] == 'puppet_distributor'}[0]
             distributor =nil
             if puppet_distributor
               distributor = {
-                :auto_publish => yum_distributor["auto_publish"],
-                :last_publish => yum_distributor["last_publish"],
-                :config => yum_distributor["config"]
+                :auto_publish => puppet_distributor["auto_publish"],
+                :last_publish => puppet_distributor["last_publish"],
+                :config => puppet_distributor["config"]
               }
             end
             repo_data={
@@ -127,17 +119,16 @@ module PulpHelper
               :description => repo["description"],
               :content_unit_counts => repo["content_unit_counts"],
               :type => REPO_TYPE_PUPPET,
+              :last_unit_removed => repo["last_unit_removed"],
+              :last_unit_added => repo["last_unit_added"],
               :distributor => distributor
             }
-            #puts repos
-            result << repo_data
           else
           end
-        end
+          repo_data
       else
-        raise "Exception: cannot list repository: response code :#{code}"
+        raise "Exception: cannot get repository detail: response code :#{code}"
       end
-      return result
     end#list_repo_details
 
     def publish_repo!(forge_id)

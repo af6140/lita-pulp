@@ -32,4 +32,18 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
       puts replies
     end
   end
+
+  describe '#show repo detail' do
+    it 'show a rpm repo detail' do
+      send_command('pulp show repo ent-cent7-dev')
+      puts "************"
+      puts replies
+    end
+    it 'show a puppet repo detail' do
+      send_command('pulp show repo forge_dev')
+      puts "************"
+      puts replies
+    end
+  end
+
 end
