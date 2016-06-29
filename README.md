@@ -29,6 +29,7 @@ end
 It can do following:
 - List all rpm repositories
 - List all puppet repositories
+- Show a repository details
 - Search rpm package
 - Search puppet module
 - Copy rpm package from one repository to another
