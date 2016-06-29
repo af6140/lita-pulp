@@ -2,11 +2,11 @@ Gem::Specification.new do |spec|
   spec.name          = "lita-pulp"
   spec.version       = "0.1.0"
   spec.authors       = ["Wang, Dawei"]
-  spec.email         = ["dwang@entertainment.com"]
-  spec.description   = "Add a description"
-  spec.summary       = "Add a summary"
-  spec.homepage      = "http://localhost"
-  spec.license       = "Add a license"
+  spec.email         = ["daweiwang.gatekeeper@gmail.com"]
+  spec.description   = "Lita bot for pulp server"
+  spec.summary       = "Lita bot for pulp server operation, like list repositories and search rpm or puppet modules."
+  spec.homepage      = "https://github.com/af6140/lita-pulp.git"
+  spec.license       = "Apache-2.0"
   spec.metadata      = { "lita_plugin_type" => "handler" }
 
   spec.files         = `git ls-files`.split($/)
