@@ -20,7 +20,7 @@ module Lita
        :rpm_repos,
        command: true,
        help: {
-         t('help.rpm_repos.key') => t('help.rpm_repos.value')
+         t('help.rpm_repos_key') => t('help.rpm_repos_value')
        }
       )
 
@@ -29,7 +29,7 @@ module Lita
        :puppet_repos,
        command: true,
        help: {
-         t('help.puppet_repos.key') => t('help.puppet_repos.value')
+         t('help.puppet_repos_key') => t('help.puppet_repos_value')
        }
       )
 
@@ -38,7 +38,7 @@ module Lita
         :publish_repo,
         command: true,
         help: {
-          t('help.publish.key') => t('help.publish.value')
+          t('help.publish_key') => t('help.publish_value')
         }
       )
 
@@ -47,7 +47,7 @@ module Lita
        :rpm_search,
        command: true,
        help: {
-         t('help.rmp_search.key') => t('help.rpm_search.value')
+         t('help.rmp_search_key') => t('help.rpm_search_value')
        }
       )
 
@@ -56,7 +56,7 @@ module Lita
        :puppet_search,
        command: true,
        help: {
-         t('help.puppet_search.key') => t('help.puppet_search.value')
+         t('help.puppet_search_key') => t('help.puppet_search_value')
        }
       )
 
