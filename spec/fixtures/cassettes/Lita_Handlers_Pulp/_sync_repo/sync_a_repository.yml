@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/forge_dev/actions/sync/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Thu, 30 Jun 2016 18:37:09 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/b94d1d2b-045f-48d7-8e8c-0ea56d26f031/",
+        "task_id": "b94d1d2b-045f-48d7-8e8c-0ea56d26f031"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 30 Jun 2016 18:37:10 GMT
+recorded_with: VCR 3.0.3

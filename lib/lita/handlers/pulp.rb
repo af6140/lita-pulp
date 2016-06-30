@@ -35,8 +35,8 @@ module Lita
       )
 
       route(
-        /^pulp\spubish\s(\S+)$/,
-        :publish_repo,
+        /^pulp\spublish\s(\S+)$/,
+        :repo_publish,
         command: true,
         help: {
           t('help.publish_key') => t('help.publish_value')
@@ -199,6 +199,24 @@ module Lita
         }
       )
 
+      route(
+        /^pulp\s+sync\s+(\S+)$/,
+        :repo_sync,
+        command: true,
+        help: {
+          t('help.sync_repo_key') => t('help.sync_repo_value')
+        }
+      )
+
+      # route(
+      #   /^pulp\s+sync_status\s+(\S+)$/,
+      #   :check_sync_status,
+      #   command: true,
+      #   help: {
+      #     t('help.sync_status_key') => t('help.sync_status_value')
+      #   }
+      # )
+
       def rpm_repos(response)
         begin
           result=list_repo(REPO_TYPE_RPM)
@@ -236,18 +254,59 @@ module Lita
           response.reply e.message
         end
       end
-      def publish_repo(response)
-          repo_id = response.matchs[0][0]
+      def repo_publish(response)
+          repo_id = response.matches[0][0]
           if repo_id
+            unless repo_id
+              response.reply "Invalid repository id"
+            end
             begin
-              publish_repo(repo_id)
-              response.reply "Command executed successfully"
+              result = publish_repo!(repo_id)
+              response.reply JSON.pretty_generate(result)
             rescue Exception => e
               response.reply e.message
             end
           else
             response.reply "No repoistory id specified"
           end
+      end
+
+      def repo_sync(response)
+        #puts "response.matches[0]=#{response.matches[0][0]}"
+        repo_id = response.matches[0][0]
+        if repo_id
+          unless repo_id
+            response.reply "Invalid repository id"
+          end
+          begin
+            result=sync_repo!(repo_id)
+            response.reply JSON.pretty_generate(result)
+          rescue Exception => e
+            response.reply e.message
+          end
+        else
+          response.reply "No repoistory id specified"
+        end
+      end
+
+      #it returns all history with runcible api, which is not an idea behavior
+      #though pulp can puerge the task status according to configuration
+      def check_sync_status(response)
+        puts "response.matches[0]=#{response.matches[0][0]}"
+        repo_id = response.matches[0][0]
+        if repo_id
+          unless repo_id
+            response.reply "Invalid repository id"
+          end
+          begin
+            result = sync_status(repo_id)
+            response.reply JSON.pretty_generate(result)
+          rescue Exception => e
+            response.reply e.message
+          end
+        else
+          response.reply "No repoistory id specified"
+        end
       end
 
       def rpm_search(response)

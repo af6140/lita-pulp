@@ -139,13 +139,50 @@ module PulpHelper
         ##
         ## Runcilbe does not proper include respone code
         ##
-        if publish_response.code !=202 && !"#{publish_response.code}".start_with?("20")
-          raise "Publish #{forge_id} failed with http response code: #{publish_response.code}"
+        presponse=JSON.parse(publish_response.to_json)
+        if presponse.nil? || presponse[0]["spawned_tasks"].length<1
+          raise "Exception: repo publish requeste failed, response : #{publish_response}"
         end
+        publish_response
       rescue StandardError => e
         raise "Excpetion: Failed to publish, #{e.message}"
       end
     end#publish_repo
+
+    def sync_repo!(forge_id)
+      begin
+        sync_response=client.extensions.repository.sync(forge_id)
+        ##
+        ## Runcilbe does not proper include respone code
+        ##
+        if sync_response.code !=201 && !"#{sync_response.code}".start_with?("20")
+          if sync_response.code == 404
+            raise "repository #{forge_id} not found"
+          end
+          raise "Sync #{forge_id} failed with http response code: #{sync_response.code}"
+        end
+        sync_response
+      rescue StandardError => e
+        raise "Excpetion: Failed to Sync, #{e.message}"
+      end
+    end#sync_repo
+
+    def sync_status(forge_id)
+      begin
+        sync_response=client.extensions.repository.sync_status(forge_id)
+        ##
+        ## Runcilbe does not proper include respone code
+        ##
+        if sync_response.code !=200 && !"#{sync_response.code}".start_with?("20")
+          if sync_response.code == 404
+            raise "repository #{forge_id} not found"
+          end
+          raise "Sync #{forge_id} failed with http response code: #{sync_response.code}"
+        end
+      rescue StandardError => e
+        raise "Excpetion: Failed to Sync, #{e.message}"
+      end
+    end
 
     def delete_rpm_newer!(forge_id, name, version, release, arch, auto_publish=false)
       criteria = get_rpm_unit_ass_criteria(name, version, release, arch)

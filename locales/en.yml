@@ -23,3 +23,7 @@ en:
           delete_newer_puppet_value: "Delete newer version of specified puppet module from SRC_REPO , optionally publish the repo"
           show_repo_key: "pulp show repo REPO_ID"
           show_repo_value: "Show details of REPO_ID"
+          sync_repo_key: "pulp sync REPO_ID"
+          sync_repo_value: "Sync repository REPO_ID"
+          sync_status_key: "pulp sync_status REPO_ID"
+          sync_status_value: "Check repository REPO_ID sync status"
