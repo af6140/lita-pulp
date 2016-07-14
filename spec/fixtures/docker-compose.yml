@@ -1,0 +1,108 @@
+version: '2'
+services:
+  db:
+    image: pulp/mongodb
+    ports:
+      - "27017:27017"
+    container_name: pulp_db
+  qpid:
+    image: pulp/qpid
+    ports:
+      - "5672:5672"
+    container_name: pulp_qpid
+  data:
+    image: pulp/base
+    container_name: pulp_data
+    environment:
+      - DROOT=
+    command: bash -c "chown apache /var/log/httpd-pulpapi && chown apache /var/log/httpd-crane && /bin/rm -rf /etc/pulp/* && /setup.sh "
+    depends_on:
+      - db
+      - qpid
+    volumes:
+      - /dev/log:/dev/log
+      - /etc/pulp
+      - /etc/pki/pulp
+      - /var/lib/pulp
+      - /var/lib/pulp/celery
+      - /var/log/httpd-pulpapi
+      - /var/log/httpd-crane
+  beat:
+    image: pulp/worker
+    container_name: pulp_beat
+    links:
+      - db
+      - qpid
+    volumes_from:
+      - data
+    depends_on:
+      - db
+      - qpid
+      - data
+    command: "beat"
+  resource_manager:
+    image: pulp/worker
+    container_name: pulp_resource_manager
+    links:
+      - db
+      - qpid
+    volumes_from:
+      - data
+    depends_on:
+      - db
+      - qpid
+      - beat
+    command: "resource_manager"
+  worker1:
+    image: pulp/worker
+    container_name: pulp_worker1
+    volumes_from:
+      - data
+    links:
+      - db
+      - qpid
+    command: "worker 1"
+    depends_on:
+      - db
+      - qpid
+      - beat
+      - resource_manager
+  worker2:
+    image: pulp/worker
+    container_name: pulp_worker2
+    volumes_from:
+      - data
+    links:
+      - db
+      - qpid
+    command:  "worker 2"
+    depends_on:
+      - db
+      - qpid
+      - beat
+      - resource_manager
+  pulpapi:
+    image: pulp/apache
+    ports:
+      - "8443:443"
+      - "8808:80"
+    container_name: pulp_api
+    volumes_from:
+      - data
+    links:
+      - db
+      - qpid
+    depends_on:
+      - db
+      - qpid
+      - beat
+      - resource_manager
+  crane:
+    image: pulp/crane-allinone
+    ports:
+      - "5000:80"
+    container_name: pulp_crane
+    volumes_from:
+      - data
+    depends_on:
+      - pulpapi
