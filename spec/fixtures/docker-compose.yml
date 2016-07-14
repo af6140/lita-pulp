@@ -83,8 +83,8 @@ services:
   pulpapi:
     image: pulp/apache
     ports:
-      - "8443:443"
-      - "8808:80"
+      - "8843:443"
+      - "8800:80"
     container_name: pulp_api
     volumes_from:
       - data
