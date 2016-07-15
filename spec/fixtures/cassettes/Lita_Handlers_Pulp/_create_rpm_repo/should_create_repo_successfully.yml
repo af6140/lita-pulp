@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://localhost:8843/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"repo_rpm_1","importer_type_id":"yum_importer","importer_config":{},"notes":{"_repo-type":"rpm-repo"},"distributors":[{"distributor_type_id":"yum_distributor","distributor_config":{"relative_url":"rpm/test/x86_64","http":true,"https":false},"auto_publish":false,"distributor_id":"yum_distributor"},{"distributor_type_id":"export_distributor","distributor_config":{"http":true,"https":false,"relative_url":"rpm/test/x86_64"},"auto_publish":false,"distributor_id":"export_distributor"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '491'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 400
+      message: BAD REQUEST
+    headers:
+      Date:
+      - Fri, 15 Jul 2016 19:09:23 GMT
+      Server:
+      - Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.5
+      Content-Length:
+      - '389'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "POST", "exception": null, "error_message":
+        "Configuration key ''relative_url'' is not supported", "_href": "/pulp/api/v2/repositories/",
+        "http_status": 400, "error": {"code": "PLP0000", "data": {}, "description":
+        "Configuration key ''relative_url'' is not supported", "sub_errors": []},
+        "args": ["Configuration key ''relative_url'' is not supported"], "traceback":
+        null}'
+    http_version: 
+  recorded_at: Fri, 15 Jul 2016 19:09:24 GMT
+recorded_with: VCR 3.0.3

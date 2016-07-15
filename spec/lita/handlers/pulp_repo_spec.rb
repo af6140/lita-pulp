@@ -5,7 +5,7 @@ vcr_options = { :record => :new_episodes }
 describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
 
   before do
-    registry.config.handlers.pulp.url="https://pulp.co.epi.web"
+    registry.config.handlers.pulp.url="https://localhost:8843"
     registry.config.handlers.pulp.api_path="/pulp/api/v2/"
     registry.config.handlers.pulp.username="admin"
     registry.config.handlers.pulp.password="admin"
@@ -18,8 +18,16 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
     is_expected.to route_command('pulp show repo test').to(:show_repo)
     is_expected.to route_command('pulp sync test').to(:repo_sync)
     is_expected.to route_command('pulp publish test').to(:repo_publish)
+    is_expected.to route_command('pulp create rpm repo --repo_id rpm_repo_1 --name "test repo"').to(:cmd_create_rpm_repo)
   end
 
+
+  describe '#create rpm repo' do
+    it 'should create repo successfully' do
+      send_command('pulp create rpm repo --repo_id repo_rpm_1 --name "test repo" --description "Test REPO" --relative_url "rpm/test/x86_64" ')
+      puts replies
+    end
+  end
   describe '#rpm_repos' do
     it 'list rpm repos' do
       send_command("pulp rpm repos")

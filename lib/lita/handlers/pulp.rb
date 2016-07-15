@@ -208,6 +208,45 @@ module Lita
         }
       )
 
+      route(
+        /^pulp\s+create\s+rpm\s+repo/i,
+        :cmd_create_rpm_repo,
+        command: true,
+        kwargs: {
+          repo_id: {
+            short: "r",
+          },
+          name: {
+            short: "n"
+          },
+          description: {
+            short: "d"
+          },
+          feed: {
+            short: "f"
+          },
+          relative_url: {
+            short: "u"
+          },
+          http: {
+            short: "h",
+            boolean: true
+          },
+          https: {
+            short: "s",
+            boolean: true
+          },
+          auto_publish: {
+            short: 'p',
+            boolean: true
+          }
+        },
+        help: {
+          t("help.cmd_create_rpm_repo_key") => t("help.cmd_create_rpm_repo_value")
+        }
+      )
+
+
       # route(
       #   /^pulp\s+sync_status\s+(\S+)$/,
       #   :check_sync_status,
@@ -438,6 +477,24 @@ module Lita
         end
       end
 
+      def cmd_create_rpm_repo(response)
+        args = response.extensions[:kwargs]
+        #puts "args: #{args}"
+        repo_id = args[:repo_id]
+        name = args[:name] || repo_id
+        description = args[:description]
+        feed = args[:feed]
+        relative_url = args[:relative_url]
+        serve_http = args[:http].nil? ? true : args[:http]
+        serve_https = args[:https].nil? ? false : args[:https]
+        auto_publish = args[:auto_publish].nil? ? false : args[:auto_publish]
+        begin
+          info = create_rpm_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, relative_url: relative_url, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
+          response.reply info
+        rescue Exception => e
+          response.reply e.message
+        end
+      end
 
       Lita.register_handler(self)
       #Lita.register_hook(:trigger_route, Lita::Extensions::KeywordArguments)

@@ -6,6 +6,13 @@ module PulpHelper
     REPO_TYPE_RPM="rpm-repo"
     REPO_TYPE_PUPPET="puppet-repo"
 
+    YUM_IMPORTER_ID = "yum_importer"
+    PUPPET_IMPORTER_ID = 'puppet_importer'
+
+    YUM_DISTRIBUTOR_ID = "yum_distributor"
+    PUPPET_DISTRIBUTOR_ID = "puppet_distributor"
+    YUM_EXPORT_DISTRIBUTOR_ID="export_distributor"
+
     def list_repo(type)
       criteria = {
         "filters" => {
@@ -131,6 +138,37 @@ module PulpHelper
       end
     end#list_repo_details
 
+    def create_rpm_repo(repo_id:, display_name: nil , description: '', feed_url: nil, relative_url: nil, serve_http: true, serve_https: false, auto_publish: false)
+
+      if relative_url.nil? || relative_url.strip.length<1
+        raise "Invalid relative_url"
+      end
+      importer = Runcible::Models::YumImporter.new
+      importer.feed = feed_url if feed_url
+      yum_distributor = Runcible::Models::YumDistributor.new relative_url, serve_http, serve_https
+      yum_distributor.auto_publish = auto_publish
+      yum_distributor.id = 'yum_distributor'
+
+      export_distributor = Runcible::Models::ExportDistributor.new serve_http, serve_https, relative_url
+      export_distributor.auto_publish = auto_publish
+      export_distributor.id = 'export_distributor'
+
+      begin
+        puts "call creating"
+        response = client.extensions.repository.create_with_importer_and_distributors(repo_id, importer, [yum_distributor, export_distributor])
+        code=response.code
+        body=response.body
+        case code
+        when 200
+          return true
+        default
+          raise "Operation failed, response code:#{code}, #{response}"
+        end
+      rescue Exception => e
+        raise "Failed to create repo, #{e.message} #{e.backtrace.join("\n")}"
+      end
+
+    end
     def publish_repo!(forge_id)
       message = "Publish #{forge_id} submitted successfully"
       begin
@@ -380,5 +418,7 @@ module PulpHelper
       }
       return criteria
     end#function
+
+
   end#module
 end#module

@@ -85,4 +85,41 @@ http_interactions:
         "id": "forge_dev", "_href": "/pulp/api/v2/repositories/forge_dev/"}]'
     http_version: 
   recorded_at: Wed, 29 Jun 2016 14:43:18 GMT
+- request:
+    method: post
+    uri: https://localhost:8843/pulp/api/v2/repositories/search/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"filters":{"notes._repo-type":{"$in":["puppet-repo"]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '69'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Jul 2016 14:44:27 GMT
+      Server:
+      - Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.5
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Fri, 15 Jul 2016 14:44:27 GMT
 recorded_with: VCR 3.0.3

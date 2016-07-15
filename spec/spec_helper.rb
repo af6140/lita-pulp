@@ -21,14 +21,18 @@ RSpec.configure do |config|
   config.before :suite do
     puts "before suite, set up"
     work_dir = File.expand_path('../fixtures', __FILE__)
-    # @compose = Docker::Compose::Session.new dir:work_dir
-    # @compose.up detached:true, no_build: true
+    if ENV['LITA_provision'] != 'no'
+      @compose = Docker::Compose::Session.new dir:work_dir
+      @compose.up detached:true, no_build: true
+    end
   end
   config.after :suite do
     puts "after suite, clean up"
-    # @compose.stop
-    # sleep 2
-    # @compose.rm force:true, volumes:true
+    if ENV['LITA_destroy'] != 'no'
+      @compose.stop
+      sleep 2
+      @compose.rm force:true, volumes:true
+    end
   end
   config.before do
     registry.register_handler(Lita::Handlers::Pulp)
