@@ -35,8 +35,7 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
   describe '#rpm_repos' do
     it 'list rpm repos' do
       send_command("pulp rpm repos")
-      puts "*********************"
-      puts replies
+      expect(replies.last).to match(/repo_rpm_1|repo_rpm_2/)
     end
   end
 
@@ -50,9 +49,11 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
 
   describe '#show repo detail' do
     it 'show a rpm repo detail' do
-      send_command('pulp show repo ent-cent7-dev')
+      send_command('pulp show repo repo_rpm_1')
       puts "************"
-      puts replies
+      expect(replies.last).to match(/id.*repo_rpm_1/)
+      expect(replies.last).to match(/"http".*true/)
+      expect(replies.last).to match(/"https".*false/)
     end
     it 'show a puppet repo detail' do
       send_command('pulp show repo forge_dev')
@@ -63,17 +64,18 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
 
   describe '#sync repo' do
     it 'sync a repository' do
-      send_command('pulp sync forge_dev')
+      send_command('pulp sync repo_rpm_1')
       puts "***********"
-      puts replies
+      #puts replies
+      expect(replies.last).to match(/task_id/)
     end
   end
 
   describe '#publish repo' do
     it 'publish a repository' do
-      send_command('pulp publish ent-cent7-qa')
+      send_command('pulp publish repo_rpm_1')
       puts "***********"
-      puts replies
+      expect(replies.last).to match(/task_id/)
     end
   end
 
