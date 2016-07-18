@@ -11,6 +11,18 @@ require 'vcr'
 
 
 VCR.configure do |c|
+  c.default_cassette_options = {
+    :match_requests_on => [:method, :uri, :host, :headers, :query, :body, :path]
+  }
+  c.ignore_request do |request |
+    uri = request.uri
+    ignore = false
+    method = request.method
+    if uri.end_with?('repositories/') && method.to_s == 'post'
+      ignore = true
+    end
+    ignore == true
+  end
   c.cassette_library_dir = 'spec/fixtures/cassettes'
   c.hook_into :webmock
   c.configure_rspec_metadata!

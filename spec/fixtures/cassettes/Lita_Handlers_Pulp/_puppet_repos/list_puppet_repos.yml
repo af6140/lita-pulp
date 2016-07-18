@@ -2,91 +2,6 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/search/
-    body:
-      encoding: UTF-8
-      string: '{"criteria":{"filters":{"notes._repo-type":{"$in":["puppet-repo"]}}},"details":true}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '84'
-      User-Agent:
-      - Ruby
-      Authorization:
-      - Basic YWRtaW46YWRtaW4=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 29 Jun 2016 14:43:08 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '4107'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '[{"scratchpad": {}, "display_name": "forge_uat", "description": null,
-        "distributors": [{"repo_id": "forge_uat", "_href": "/pulp/api/v2/repositories/forge_uat/distributors/puppet_distributor/",
-        "_ns": "repo_distributors", "last_publish": "2016-01-20T19:30:35Z", "distributor_type_id":
-        "puppet_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
-        "564104adc20cde2b4d2d7ee3"}, "config": {}, "id": "puppet_distributor"}], "last_unit_added":
-        null, "notes": {"_repo-type": "puppet-repo"}, "last_unit_removed": null, "content_unit_counts":
-        {"puppet_module": 3}, "_ns": "repos", "importers": [{"scratchpad": null, "_href":
-        "/pulp/api/v2/repositories/forge_uat/importers/puppet_importer/", "_ns": "repo_importers",
-        "importer_type_id": "puppet_importer", "last_sync": null, "repo_id": "forge_uat",
-        "_id": {"$oid": "564104adc20cde2b4d2d7ee2"}, "config": {}, "id": "puppet_importer"}],
-        "_id": {"$oid": "564104adc20cde2b4d2d7ee1"}, "id": "forge_uat", "_href": "/pulp/api/v2/repositories/forge_uat/"},
-        {"scratchpad": {}, "display_name": null, "description": null, "distributors":
-        [{"repo_id": "forge_build", "_href": "/pulp/api/v2/repositories/forge_build/distributors/puppet_distributor/",
-        "_ns": "repo_distributors", "last_publish": "2016-06-28T19:45:32Z", "distributor_type_id":
-        "puppet_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
-        "574861acc20cde13fa48fdbb"}, "config": {}, "id": "puppet_distributor"}], "last_unit_added":
-        null, "notes": {"_repo-type": "puppet-repo"}, "last_unit_removed": null, "content_unit_counts":
-        {"puppet_module": 87}, "_ns": "repos", "importers": [{"scratchpad": null,
-        "_href": "/pulp/api/v2/repositories/forge_build/importers/puppet_importer/",
-        "_ns": "repo_importers", "importer_type_id": "puppet_importer", "last_sync":
-        null, "repo_id": "forge_build", "_id": {"$oid": "574861acc20cde13fa48fdba"},
-        "config": {}, "id": "puppet_importer"}], "_id": {"$oid": "574861acc20cde13fa48fdb9"},
-        "id": "forge_build", "_href": "/pulp/api/v2/repositories/forge_build/"}, {"scratchpad":
-        {}, "display_name": "forge_qa", "description": null, "distributors": [{"repo_id":
-        "forge_qa", "_href": "/pulp/api/v2/repositories/forge_qa/distributors/puppet_distributor/",
-        "_ns": "repo_distributors", "last_publish": "2016-06-29T14:07:29Z", "distributor_type_id":
-        "puppet_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
-        "5638cb9bc20cde6bafe50ac3"}, "config": {}, "id": "puppet_distributor"}], "last_unit_added":
-        "2016-06-24T17:13:46Z", "notes": {"_repo-type": "puppet-repo"}, "last_unit_removed":
-        "2016-05-31T16:05:45Z", "content_unit_counts": {"puppet_module": 4}, "_ns":
-        "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/forge_qa/importers/puppet_importer/",
-        "_ns": "repo_importers", "importer_type_id": "puppet_importer", "last_sync":
-        "2016-01-25T15:49:52Z", "repo_id": "forge_qa", "_id": {"$oid": "5638cb9bc20cde6bafe50ac2"},
-        "config": {}, "id": "puppet_importer"}], "_id": {"$oid": "5638cb9bc20cde6bafe50ac1"},
-        "id": "forge_qa", "_href": "/pulp/api/v2/repositories/forge_qa/"}, {"scratchpad":
-        {}, "display_name": "forge_dev", "description": null, "distributors": [{"repo_id":
-        "forge_dev", "_href": "/pulp/api/v2/repositories/forge_dev/distributors/puppet_distributor/",
-        "_ns": "repo_distributors", "last_publish": "2016-06-28T19:46:22Z", "distributor_type_id":
-        "puppet_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
-        "56ba3b59c20cde7c072e6778"}, "config": {}, "id": "puppet_distributor"}], "last_unit_added":
-        "2016-06-28T19:46:14Z", "notes": {"_repo-type": "puppet-repo"}, "last_unit_removed":
-        "2016-06-02T18:37:52Z", "content_unit_counts": {"puppet_module": 125}, "_ns":
-        "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/forge_dev/importers/puppet_importer/",
-        "_ns": "repo_importers", "importer_type_id": "puppet_importer", "last_sync":
-        null, "repo_id": "forge_dev", "_id": {"$oid": "56ba3b59c20cde7c072e6777"},
-        "config": {}, "id": "puppet_importer"}], "_id": {"$oid": "56ba3b58c20cde7c072e6776"},
-        "id": "forge_dev", "_href": "/pulp/api/v2/repositories/forge_dev/"}]'
-    http_version: 
-  recorded_at: Wed, 29 Jun 2016 14:43:18 GMT
-- request:
-    method: post
     uri: https://localhost:8843/pulp/api/v2/repositories/search/
     body:
       encoding: UTF-8
@@ -110,7 +25,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 15 Jul 2016 14:44:27 GMT
+      - Mon, 18 Jul 2016 19:29:16 GMT
       Server:
       - Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.5
       Content-Length:
@@ -121,5 +36,5 @@ http_interactions:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Fri, 15 Jul 2016 14:44:27 GMT
+  recorded_at: Mon, 18 Jul 2016 19:29:16 GMT
 recorded_with: VCR 3.0.3

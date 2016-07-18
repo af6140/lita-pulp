@@ -1,4 +1,5 @@
 require 'runcible'
+require 'json'
 
 module PulpHelper
   module Misc
@@ -11,6 +12,11 @@ module PulpHelper
           :verify_ssl => config.verify_ssl || false,
           :logger => "",
       })
+    end
+    def get_version
+      response = client.resources.repository.call(:get, "/status/")
+      version = response['versions']['platform_version']
+      version
     end
   end
 end

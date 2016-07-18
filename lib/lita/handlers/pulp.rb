@@ -11,7 +11,7 @@ module Lita
       config :url, required: true, type: String
       config :api_path, required: true, type: String
       config :verify_ssl, required:true, types: [TrueClass, FalseClass], default: false
-      config :pulp_version, required:true, types: String, # like 2.7.1 2.7.2 2.8 used to work aroud isse #1394
+      config :pulp_version, required:true, types: String # like 2.7.1 2.7.2 2.8 used to work aroud isse #1394
 
       include ::PulpHelper::Misc
       include ::PulpHelper::Repo
@@ -490,8 +490,8 @@ module Lita
         serve_https = args[:https].nil? ? false : args[:https]
         auto_publish = args[:auto_publish].nil? ? false : args[:auto_publish]
         begin
-          info = create_rpm_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, relative_url: relative_url, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
-          response.reply info
+          success = create_rpm_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, relative_url: relative_url, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
+          response.reply "Repo created successfully."
         rescue Exception => e
           response.reply e.message
         end

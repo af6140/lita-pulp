@@ -2,55 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://pulp.co.epi.web/pulp/api/v2/repositories/forge_dev/?details=true
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-      Authorization:
-      - Basic YWRtaW46YWRtaW4=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 29 Jun 2016 21:24:47 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '1100'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "forge_dev", "description": null,
-        "distributors": [{"repo_id": "forge_dev", "_href": "/pulp/api/v2/repositories/forge_dev/distributors/puppet_distributor/",
-        "_ns": "repo_distributors", "last_publish": "2016-06-28T19:46:22Z", "distributor_type_id":
-        "puppet_distributor", "auto_publish": true, "scratchpad": {}, "_id": {"$oid":
-        "56ba3b59c20cde7c072e6778"}, "config": {}, "id": "puppet_distributor"}], "last_unit_added":
-        "2016-06-28T19:46:14Z", "notes": {"_repo-type": "puppet-repo"}, "last_unit_removed":
-        "2016-06-02T18:37:52Z", "content_unit_counts": {"puppet_module": 125}, "_ns":
-        "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/forge_dev/importers/puppet_importer/",
-        "_ns": "repo_importers", "importer_type_id": "puppet_importer", "last_sync":
-        null, "repo_id": "forge_dev", "_id": {"$oid": "56ba3b59c20cde7c072e6777"},
-        "config": {}, "id": "puppet_importer"}], "locally_stored_units": 125, "_id":
-        {"$oid": "56ba3b58c20cde7c072e6776"}, "total_repository_units": 125, "id":
-        "forge_dev", "_href": "/pulp/api/v2/repositories/forge_dev/"}'
-    http_version: 
-  recorded_at: Wed, 29 Jun 2016 21:24:48 GMT
-- request:
-    method: get
     uri: https://localhost:8843/pulp/api/v2/repositories/forge_dev/?details=true
     body:
       encoding: US-ASCII
@@ -72,7 +23,7 @@ http_interactions:
       message: NOT FOUND
     headers:
       Date:
-      - Fri, 15 Jul 2016 14:44:27 GMT
+      - Mon, 18 Jul 2016 19:29:16 GMT
       Server:
       - Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.5
       Content-Length:
@@ -87,5 +38,5 @@ http_interactions:
         "forge_dev"}}, "description": "Missing resource(s): repo=forge_dev", "sub_errors":
         []}, "traceback": null, "resources": {"repo": "forge_dev"}}'
     http_version: 
-  recorded_at: Fri, 15 Jul 2016 14:44:28 GMT
+  recorded_at: Mon, 18 Jul 2016 19:29:16 GMT
 recorded_with: VCR 3.0.3

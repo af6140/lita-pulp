@@ -154,21 +154,33 @@ module PulpHelper
       export_distributor.id = 'export_distributor'
 
       begin
+        version = get_version #get server version
+        # pulp issue https://pulp.plan.io/issues/1520
+        if Gem::Version.new('2.8.0') > Gem::Version.new(version)
+          def export_distributor.config
+            to_ret = as_json
+            to_ret.delete('auto_publish')
+            to_ret.delete('id')
+            to_ret.delete('relative_url')
+            to_ret
+          end
+        end
         puts "call creating"
         response = client.extensions.repository.create_with_importer_and_distributors(repo_id, importer, [yum_distributor, export_distributor])
         code=response.code
         body=response.body
+        puts "code #{code}"
         case code
-        when 200
+        when 201
           return true
         default
           raise "Operation failed, response code:#{code}, #{response}"
         end
       rescue Exception => e
-        raise "Failed to create repo, #{e.message} #{e.backtrace.join("\n")}"
+        raise "Failed to create repo, #{e.message}"
       end
-
     end
+
     def publish_repo!(forge_id)
       message = "Publish #{forge_id} submitted successfully"
       begin

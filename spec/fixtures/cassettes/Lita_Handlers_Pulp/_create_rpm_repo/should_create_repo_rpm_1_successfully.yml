@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:8843/pulp/api/v2//status/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 18 Jul 2016 19:29:15 GMT
+      Server:
+      - Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.5
+      Content-Length:
+      - '592'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"known_workers": [{"_ns": "workers", "last_heartbeat": "2016-07-18T19:29:00Z",
+        "_id": "scheduler@2396e04213ba"}, {"_ns": "workers", "last_heartbeat": "2016-07-18T19:29:15Z",
+        "_id": "resource_manager@8b9711843c10"}, {"_ns": "workers", "last_heartbeat":
+        "2016-07-18T19:29:13Z", "_id": "reserved_resource_worker-1@ea4034e28f7f"},
+        {"_ns": "workers", "last_heartbeat": "2016-07-18T19:29:14Z", "_id": "reserved_resource_worker-2@035c6bfee142"}],
+        "messaging_connection": {"connected": true}, "database_connection": {"connected":
+        true}, "api_version": "2", "versions": {"platform_version": "2.7.1"}}'
+    http_version: 
+  recorded_at: Mon, 18 Jul 2016 19:29:15 GMT
+recorded_with: VCR 3.0.3

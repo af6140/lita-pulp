@@ -23,8 +23,12 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
 
 
   describe '#create rpm repo' do
-    it 'should create repo successfully' do
+    it 'should create repo_rpm_1 successfully' do
       send_command('pulp create rpm repo --repo_id repo_rpm_1 --name "test repo" --description "Test REPO" --relative_url "rpm/test/x86_64" ')
+      puts replies
+    end
+    it 'should create repo_rpm_2 successfully' do
+      send_command('pulp create rpm repo --repo_id repo_rpm_2 --name "test repo 2" --description "Test REPO2" --relative_url "rpm/test2/x86_64" ')
       puts replies
     end
   end
