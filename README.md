@@ -34,3 +34,5 @@ It can do following:
 - Search puppet module
 - Copy rpm package from one repository to another
 - Copy puppet module from one repository to another
+- Create rpm/puppet repository
+- Delete a repository

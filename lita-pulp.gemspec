@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "lita-pulp"
-  spec.version       = "0.1.2"
+  spec.version       = "0.1.3"
   spec.authors       = ["Wang, Dawei"]
   spec.email         = ["daweiwang.gatekeeper@gmail.com"]
   spec.description   = "Lita bot for pulp server"
