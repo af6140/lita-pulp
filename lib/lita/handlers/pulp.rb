@@ -247,6 +247,48 @@ module Lita
         }
       )
 
+      route(
+        /^pulp\s+create\s+puppet\s+repo/i,
+        :cmd_create_puppet_repo,
+        command: true,
+        kwargs: {
+          repo_id: {
+            short: "r",
+          },
+          name: {
+            short: "n"
+          },
+          description: {
+            short: "d"
+          },
+          feed: {
+            short: "f"
+          },
+          remove_missing: {
+            short: 'm',
+            boolean: true
+          },
+          queries: {
+            short: 'q'
+          },
+          http: {
+            short: "h",
+            boolean: true
+          },
+          https: {
+            short: "s",
+            boolean: true
+          },
+          auto_publish: {
+            short: 'p',
+            boolean: true
+          }
+        },
+        help: {
+          t("help.cmd_create_puppet_repo_key") => t("help.cmd_create_puppet_repo_value")
+        }
+      )
+
 
       # route(
       #   /^pulp\s+sync_status\s+(\S+)$/,
@@ -275,6 +317,7 @@ module Lita
           begin
             result=list_repo(REPO_TYPE_PUPPET)
             #response.reply result.to_json
+            #puts result
             s = StringIO.new
             result.each do |r|
               s << "["<< r[:id] << "] : " << r[:name] << ", " << r[:description] << "\n"
@@ -491,6 +534,26 @@ module Lita
         auto_publish = args[:auto_publish].nil? ? false : args[:auto_publish]
         begin
           success = create_rpm_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, relative_url: relative_url, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
+          response.reply "Repo created successfully."
+        rescue Exception => e
+          response.reply e.message
+        end
+      end
+
+      def cmd_create_puppet_repo(response)
+        args = response.extensions[:kwargs]
+        #puts "args: #{args}"
+        repo_id = args[:repo_id]
+        name = args[:name] || repo_id
+        description = args[:description]
+        feed = args[:feed]
+        queries = args[:queries]
+        remove_missing = args[:remove_missing].nil? ? false : args[:remove_missing] #default false
+        serve_http = args[:http].nil? ? true : args[:http] #default true
+        serve_https = args[:https].nil? ? false : args[:https]
+        auto_publish = args[:auto_publish].nil? ? false : args[:auto_publish]
+        begin
+          success = create_puppet_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, queries: queries, remove_missing: remove_missing, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
           response.reply "Repo created successfully."
         rescue Exception => e
           response.reply e.message

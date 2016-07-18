@@ -18,7 +18,8 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
     is_expected.to route_command('pulp show repo test').to(:show_repo)
     is_expected.to route_command('pulp sync test').to(:repo_sync)
     is_expected.to route_command('pulp publish test').to(:repo_publish)
-    is_expected.to route_command('pulp create rpm repo --repo_id rpm_repo_1 --name "test repo"').to(:cmd_create_rpm_repo)
+    is_expected.to route_command('pulp create rpm repo --repo_id rpm_repo_1 --name "test rpm repo"').to(:cmd_create_rpm_repo)
+    is_expected.to route_command('pulp create puppet repo --repo_id puppet_repo_1 --name "test puppet repo"').to(:cmd_create_puppet_repo)
   end
 
 
@@ -32,6 +33,18 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
       puts replies
     end
   end
+
+  describe '#create puppet repo' do
+    it 'should create repo_puppet_1 successfully' do
+      send_command('pulp create puppet repo --repo_id repo_puppet_1 --name "test puppet repo 1" --description "Test Puppet REPO1" --remove_missing ')
+      puts replies
+    end
+    it 'should create repo_puppet_2 successfully' do
+      send_command('pulp create puppet repo --repo_id repo_puppet_2 --name "test puppet repo 2" --description "Test Puppet REPO2" --remove_missing ')
+      puts replies
+    end
+  end
+
   describe '#rpm_repos' do
     it 'list rpm repos' do
       send_command("pulp rpm repos")
@@ -42,30 +55,29 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
   describe '#puppet_repos' do
     it 'list puppet repos' do
       send_command("pulp puppet repos")
-      puts "*********************"
-      puts replies
+      #puts replies
+      expect(replies.last).to match(/repo_puppet_1|repo_puppet_2/)
     end
   end
 
   describe '#show repo detail' do
     it 'show a rpm repo detail' do
       send_command('pulp show repo repo_rpm_1')
-      puts "************"
       expect(replies.last).to match(/id.*repo_rpm_1/)
       expect(replies.last).to match(/"http".*true/)
       expect(replies.last).to match(/"https".*false/)
     end
     it 'show a puppet repo detail' do
-      send_command('pulp show repo forge_dev')
-      puts "************"
-      puts replies
+      send_command('pulp show repo repo_puppet_1')
+      expect(replies.last).to match(/id.*repo_puppet_1/)
+      expect(replies.last).to match(/"serve_http".*true/)
+      expect(replies.last).to match(/"serve_https".*false/)
     end
   end
 
   describe '#sync repo' do
     it 'sync a repository' do
       send_command('pulp sync repo_rpm_1')
-      puts "***********"
       #puts replies
       expect(replies.last).to match(/task_id/)
     end
@@ -74,7 +86,6 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
   describe '#publish repo' do
     it 'publish a repository' do
       send_command('pulp publish repo_rpm_1')
-      puts "***********"
       expect(replies.last).to match(/task_id/)
     end
   end
