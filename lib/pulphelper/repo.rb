@@ -374,7 +374,23 @@ module PulpHelper
       end
     end# copy puppet
 
+    def delete_repository(repo_id)
+      begin
+        response=client.resources.repository.delete(repo_id)
+        case response.code
+        when 202
+          true
+        when 404
+          rase "Repository does not exist."
+        default
+          raise "Failed to delete repository."
+        end
+      rescue StandardError => e
+        raise "Excpetion: Failed to delete, #{e.message}"
+      end
+    end
 
+    ##### private functions #####
     private
     def get_rpm_search_params (name, version, release, arch)
       search_optional= {

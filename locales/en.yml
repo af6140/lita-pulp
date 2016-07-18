@@ -31,3 +31,5 @@ en:
           cmd_create_rpm_repo_value: 'Create a rpm repository'
           cmd_create_puppet_repo_key: 'pulp create puppet repo --repo_id [--name REPONAME] [--description DESCRIPTION] [--feed FEED_URL] [--queries "query1,query2"] [--remove_missing] [--http] [--https] [--auto_publish]'
           cmd_create_puppet_repo_value: 'Create a puppet repository'
+          cmd_delete_repository_key: 'pulp delete repo REPO_ID'
+          cmd_delete_repository_value: 'Delete a repository'

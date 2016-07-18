@@ -20,6 +20,7 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
     is_expected.to route_command('pulp publish test').to(:repo_publish)
     is_expected.to route_command('pulp create rpm repo --repo_id rpm_repo_1 --name "test rpm repo"').to(:cmd_create_rpm_repo)
     is_expected.to route_command('pulp create puppet repo --repo_id puppet_repo_1 --name "test puppet repo"').to(:cmd_create_puppet_repo)
+    is_expected.to route_command('pulp delete repo test').to(:cmd_delete_repository)
   end
 
 
@@ -87,6 +88,14 @@ describe Lita::Handlers::Pulp, lita_handler: true, :vcr => vcr_options do
     it 'publish a repository' do
       send_command('pulp publish repo_rpm_1')
       expect(replies.last).to match(/task_id/)
+    end
+  end
+
+  describe '#delete_repo' do
+    it 'delete rpm repo' do
+      send_command("pulp delete repo repo_rpm_2")
+      #puts replies
+      expect(replies.last).to match(/success/i)
     end
   end
 

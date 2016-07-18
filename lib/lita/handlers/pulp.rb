@@ -201,6 +201,15 @@ module Lita
       )
 
       route(
+        /^pulp\s+delete\s+repo\s+(\S+)$/,
+        :cmd_delete_repository,
+        command: true,
+        help: {
+          t('help.cmd_delete_repository_key') => t('help.cmd_delete_repository_value')
+        }
+      )
+
+      route(
         /^pulp\s+sync\s+(\S+)$/,
         :repo_sync,
         command: true,
@@ -555,6 +564,16 @@ module Lita
         begin
           success = create_puppet_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, queries: queries, remove_missing: remove_missing, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
           response.reply "Repo created successfully."
+        rescue Exception => e
+          response.reply e.message
+        end
+      end
+
+      def cmd_delete_repository(response)
+        repo_id = response.matches[0][0]
+        begin
+          success = delete_repository(repo_id)
+          response.reply "Repo deleted successfully."
         rescue Exception => e
           response.reply e.message
         end
