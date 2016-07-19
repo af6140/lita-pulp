@@ -11,7 +11,6 @@ module Lita
       config :url, required: true, type: String
       config :api_path, required: true, type: String
       config :verify_ssl, required:true, types: [TrueClass, FalseClass], default: false
-      config :pulp_version, required:true, types: String # like 2.7.1 2.7.2 2.8 used to work aroud isse #1394
 
       include ::PulpHelper::Misc
       include ::PulpHelper::Repo
