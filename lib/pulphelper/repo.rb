@@ -6,18 +6,25 @@ module PulpHelper
     REPO_TYPE_RPM="rpm-repo"
     REPO_TYPE_PUPPET="puppet-repo"
 
+    YUM_IMPORTER_ID = "yum_importer"
+    PUPPET_IMPORTER_ID = 'puppet_importer'
+
+    YUM_DISTRIBUTOR_ID = "yum_distributor"
+    PUPPET_DISTRIBUTOR_ID = "puppet_distributor"
+    YUM_EXPORT_DISTRIBUTOR_ID="export_distributor"
+
     def list_repo(type)
+      # use $in seems buggy
       criteria = {
         "filters" => {
-          "notes._repo-type" => {
-            "$in" => [type]
-          }
+          "notes._repo-type" => type
         }
       }
       #puts "criteria:#{criteria}"
       response=client.resources.repository.search(criteria)
       code=response.code
       body=response.body
+      #puts "list result: #{body}"
       result=[]
       case code
       when 200
@@ -130,6 +137,83 @@ module PulpHelper
         raise "Exception: cannot get repository detail: response code :#{code}"
       end
     end#list_repo_details
+
+    def create_rpm_repo(repo_id:, display_name: nil , description: '', feed_url: nil, relative_url: nil, serve_http: true, serve_https: false, auto_publish: false)
+
+      if relative_url.nil? || relative_url.strip.length<1
+        raise "Invalid relative_url"
+      end
+      importer = Runcible::Models::YumImporter.new
+      importer.feed = feed_url if feed_url
+      yum_distributor = Runcible::Models::YumDistributor.new relative_url, serve_http, serve_https
+      yum_distributor.auto_publish = auto_publish
+      yum_distributor.id = 'yum_distributor'
+
+      export_distributor = Runcible::Models::ExportDistributor.new serve_http, serve_https, relative_url
+      export_distributor.auto_publish = auto_publish
+      export_distributor.id = 'export_distributor'
+
+      optional = {
+        :display_name => display_name,
+        :description => description,
+      }
+
+      begin
+        version = get_version #get server version
+        # pulp issue https://pulp.plan.io/issues/1520
+        if Gem::Version.new('2.8.0') > Gem::Version.new(version)
+          def export_distributor.config
+            to_ret = as_json
+            to_ret.delete('auto_publish')
+            to_ret.delete('id')
+            to_ret.delete('relative_url')
+            to_ret
+          end
+        end
+        response = client.extensions.repository.create_with_importer_and_distributors(repo_id, importer, [yum_distributor, export_distributor], optional)
+        code=response.code
+        body=response.body
+        puts "code #{code}"
+        case code
+        when 201
+          return true
+        default
+          raise "Operation failed, response code:#{code}, #{response}"
+        end
+      rescue Exception => e
+        raise "Failed to create repo, #{e.message}"
+      end
+    end
+
+    def create_puppet_repo(repo_id:, display_name: nil , description: '', feed_url: nil, queries: nil,  remove_missing: false,  serve_http: true, serve_https: false, auto_publish: false)
+      importer = Runcible::Models::PuppetImporter.new
+      importer.feed = feed_url if feed_url
+      importer.remove_missing = remove_missing
+      importer.queries = queries
+      puppet_distributor = Runcible::Models::PuppetDistributor.new nil, serve_http, serve_https
+      puppet_distributor.auto_publish = auto_publish
+      puppet_distributor.id = 'puppet_distributor'
+
+      optional = {
+        :display_name => display_name,
+        :description => description,
+      }
+
+      begin
+        response = client.extensions.repository.create_with_importer_and_distributors(repo_id, importer, [puppet_distributor], optional)
+        code=response.code
+        body=response.body
+        puts "code #{code}"
+        case code
+        when 201
+          return true
+        default
+          raise "Operation failed, response code:#{code}, #{response}"
+        end
+      rescue Exception => e
+        raise "Failed to create repo, #{e.message}"
+      end
+    end
 
     def publish_repo!(forge_id)
       message = "Publish #{forge_id} submitted successfully"
@@ -290,7 +374,23 @@ module PulpHelper
       end
     end# copy puppet
 
+    def delete_repository(repo_id)
+      begin
+        response=client.resources.repository.delete(repo_id)
+        case response.code
+        when 202
+          true
+        when 404
+          rase "Repository does not exist."
+        default
+          raise "Failed to delete repository."
+        end
+      rescue StandardError => e
+        raise "Excpetion: Failed to delete, #{e.message}"
+      end
+    end
 
+    ##### private functions #####
     private
     def get_rpm_search_params (name, version, release, arch)
       search_optional= {
@@ -380,5 +480,7 @@ module PulpHelper
       }
       return criteria
     end#function
+
+
   end#module
 end#module

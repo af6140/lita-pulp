@@ -11,6 +11,7 @@ module Lita
       config :url, required: true, type: String
       config :api_path, required: true, type: String
       config :verify_ssl, required:true, types: [TrueClass, FalseClass], default: false
+      config :pulp_version, required:true, types: String # like 2.7.1 2.7.2 2.8 used to work aroud isse #1394
 
       include ::PulpHelper::Misc
       include ::PulpHelper::Repo
@@ -200,6 +201,15 @@ module Lita
       )
 
       route(
+        /^pulp\s+delete\s+repo\s+(\S+)$/,
+        :cmd_delete_repository,
+        command: true,
+        help: {
+          t('help.cmd_delete_repository_key') => t('help.cmd_delete_repository_value')
+        }
+      )
+
+      route(
         /^pulp\s+sync\s+(\S+)$/,
         :repo_sync,
         command: true,
@@ -207,6 +217,87 @@ module Lita
           t('help.sync_repo_key') => t('help.sync_repo_value')
         }
       )
+
+      route(
+        /^pulp\s+create\s+rpm\s+repo/i,
+        :cmd_create_rpm_repo,
+        command: true,
+        kwargs: {
+          repo_id: {
+            short: "r",
+          },
+          name: {
+            short: "n"
+          },
+          description: {
+            short: "d"
+          },
+          feed: {
+            short: "f"
+          },
+          relative_url: {
+            short: "u"
+          },
+          http: {
+            short: "h",
+            boolean: true
+          },
+          https: {
+            short: "s",
+            boolean: true
+          },
+          auto_publish: {
+            short: 'p',
+            boolean: true
+          }
+        },
+        help: {
+          t("help.cmd_create_rpm_repo_key") => t("help.cmd_create_rpm_repo_value")
+        }
+      )
+
+      route(
+        /^pulp\s+create\s+puppet\s+repo/i,
+        :cmd_create_puppet_repo,
+        command: true,
+        kwargs: {
+          repo_id: {
+            short: "r",
+          },
+          name: {
+            short: "n"
+          },
+          description: {
+            short: "d"
+          },
+          feed: {
+            short: "f"
+          },
+          remove_missing: {
+            short: 'm',
+            boolean: true
+          },
+          queries: {
+            short: 'q'
+          },
+          http: {
+            short: "h",
+            boolean: true
+          },
+          https: {
+            short: "s",
+            boolean: true
+          },
+          auto_publish: {
+            short: 'p',
+            boolean: true
+          }
+        },
+        help: {
+          t("help.cmd_create_puppet_repo_key") => t("help.cmd_create_puppet_repo_value")
+        }
+      )
+
 
       # route(
       #   /^pulp\s+sync_status\s+(\S+)$/,
@@ -235,6 +326,7 @@ module Lita
           begin
             result=list_repo(REPO_TYPE_PUPPET)
             #response.reply result.to_json
+            #puts result
             s = StringIO.new
             result.each do |r|
               s << "["<< r[:id] << "] : " << r[:name] << ", " << r[:description] << "\n"
@@ -438,6 +530,54 @@ module Lita
         end
       end
 
+      def cmd_create_rpm_repo(response)
+        args = response.extensions[:kwargs]
+        #puts "args: #{args}"
+        repo_id = args[:repo_id]
+        name = args[:name] || repo_id
+        description = args[:description]
+        feed = args[:feed]
+        relative_url = args[:relative_url]
+        serve_http = args[:http].nil? ? true : args[:http]
+        serve_https = args[:https].nil? ? false : args[:https]
+        auto_publish = args[:auto_publish].nil? ? false : args[:auto_publish]
+        begin
+          success = create_rpm_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, relative_url: relative_url, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
+          response.reply "Repo created successfully."
+        rescue Exception => e
+          response.reply e.message
+        end
+      end
+
+      def cmd_create_puppet_repo(response)
+        args = response.extensions[:kwargs]
+        #puts "args: #{args}"
+        repo_id = args[:repo_id]
+        name = args[:name] || repo_id
+        description = args[:description]
+        feed = args[:feed]
+        queries = args[:queries]
+        remove_missing = args[:remove_missing].nil? ? false : args[:remove_missing] #default false
+        serve_http = args[:http].nil? ? true : args[:http] #default true
+        serve_https = args[:https].nil? ? false : args[:https]
+        auto_publish = args[:auto_publish].nil? ? false : args[:auto_publish]
+        begin
+          success = create_puppet_repo(repo_id: repo_id, display_name: name , description: description, feed_url: feed, queries: queries, remove_missing: remove_missing, serve_http: serve_http, serve_https: serve_https, auto_publish: auto_publish )
+          response.reply "Repo created successfully."
+        rescue Exception => e
+          response.reply e.message
+        end
+      end
+
+      def cmd_delete_repository(response)
+        repo_id = response.matches[0][0]
+        begin
+          success = delete_repository(repo_id)
+          response.reply "Repo deleted successfully."
+        rescue Exception => e
+          response.reply e.message
+        end
+      end
 
       Lita.register_handler(self)
       #Lita.register_hook(:trigger_route, Lita::Extensions::KeywordArguments)

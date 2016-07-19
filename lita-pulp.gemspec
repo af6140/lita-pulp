@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "lita-pulp"
-  spec.version       = "0.1.2"
+  spec.version       = "0.1.3"
   spec.authors       = ["Wang, Dawei"]
   spec.email         = ["daweiwang.gatekeeper@gmail.com"]
   spec.description   = "Lita bot for pulp server"
@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", ">= 3.0.0"
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "vcr"
+  spec.add_development_dependency "docker-compose"
 end
