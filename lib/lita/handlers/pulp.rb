@@ -11,7 +11,7 @@ module Lita
       config :url, required: true, type: String
       config :api_path, required: true, type: String
       config :verify_ssl, required:true, types: [TrueClass, FalseClass], default: false
-      config :nexus_admins_group, required:true, types: [Symbol, String, Array<String,Symbol> ], default: [:nexus_admins]
+      config :pulp_admins_group, required:true, types: [Symbol, String, Array<String,Symbol> ], default: [:pulp_admins]
 
       include ::PulpHelper::Misc
       include ::PulpHelper::Repo
@@ -204,7 +204,7 @@ module Lita
         /^pulp\s+delete\s+repo\s+(\S+)$/,
         :cmd_delete_repository,
         command: true,
-        restrict_to: config.nexus_admins_group,
+        restrict_to: config.pulp_admins_group,
         help: {
           t('help.cmd_delete_repository_key') => t('help.cmd_delete_repository_value')
         }
@@ -223,7 +223,7 @@ module Lita
         /^pulp\s+create\s+rpm\s+repo/i,
         :cmd_create_rpm_repo,
         command: true,
-        restrict_to: config.nexus_admins_group,
+        restrict_to: config.pulp_admins_group,
         kwargs: {
           repo_id: {
             short: "r",
@@ -262,7 +262,7 @@ module Lita
         /^pulp\s+create\s+puppet\s+repo/i,
         :cmd_create_puppet_repo,
         command: true,
-        restrict_to: config.nexus_admins_group,
+        restrict_to: config.pulp_admins_group,
         kwargs: {
           repo_id: {
             short: "r",
